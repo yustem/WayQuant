@@ -12,7 +12,7 @@ test('static deployment: subpath assets, real deterministic worker, no API, five
   const p=await browser.newPage({viewport:{width:1440,height:1000}}),requests=[],failures=[],errors=[];
   await p.addInitScript(()=>{const RealWorker=window.Worker;window.__workerJobs=0;window.Worker=class extends RealWorker{postMessage(...args){window.__workerJobs++;return super.postMessage(...args);}};});
   p.on('request',r=>requests.push(r.url()));p.on('requestfailed',r=>failures.push(r.url()));p.on('response',r=>{if(r.status()>=400)failures.push(`${r.status()} ${r.url()}`);});p.on('pageerror',e=>errors.push(e.message));
-  await p.goto(process.env.WAYQUANT_STATIC_URL);await p.locator('.context-bar-metric').first().waitFor();
+  await p.goto(process.env.WAYQUANT_STATIC_URL);await p.locator('.context-bar-metric').first().waitFor().catch(async e=>{throw new Error(`${e.message}\n${JSON.stringify({errors,failures,body:await p.locator('body').innerText()})}`);});
   const ready=()=>p.waitForFunction(()=>!document.querySelector('.context-bar-actions button:last-child').disabled);
   await ready();assert.equal(await p.locator('html').getAttribute('lang'),'en');
   assert.match(await p.locator('[data-testid="compute-engine-status"]').innerText(),/Browser worker/);
@@ -55,7 +55,11 @@ test('static deployment: subpath assets, real deterministic worker, no API, five
     await workspace.evaluate(e=>e.scrollTop=0);
     if(lang==='EN'&&process.env.WAYQUANT_STATIC_OUTPUT){await fs.mkdir(process.env.WAYQUANT_STATIC_OUTPUT,{recursive:true});await p.screenshot({path:path.join(process.env.WAYQUANT_STATIC_OUTPUT,`module-${module}.png`)});}
    }
-   await p.locator('.command-trigger').click();await p.getByRole('dialog').getByRole('combobox').fill('ALE');assert.ok(await p.locator('.command-result').count());await p.keyboard.press('Escape');
+   await p.keyboard.press('Control+k');const dialog=p.getByRole('dialog'),search=dialog.getByRole('combobox');await search.fill('aLe');
+   assert.ok(await p.locator('.command-result').count());await dialog.locator('[data-command-id="metric-ale"]').click();
+   await p.locator('[data-search-target="ale"].search-target-highlight').waitFor();
+   await p.keyboard.press('Meta+k');await search.fill('Open FAIR');await search.press('ArrowDown');await search.press('ArrowUp');await search.press('Enter');await dialog.waitFor({state:'hidden'});
+   await p.locator('.command-trigger').click();await search.fill('zzzz-no-entity-987');assert.equal(await dialog.getByRole('option').count(),0);assert.match(await dialog.innerText(),lang==='EN'?/No matching results/:/Совпадений не найдено/);await p.keyboard.press('Escape');
   }
   await p.getByRole('button',{name:'EN',exact:true}).click();
   await p.locator('#context-asset').click();await p.getByRole('option',{name:'Federal ACH Clearing & Settlement Engine (DORA)',exact:true}).click();
@@ -67,6 +71,10 @@ test('static deployment: subpath assets, real deterministic worker, no API, five
   await p.locator('.sidebar-navigation button').first().click();
   const slider=p.getByRole('slider').first();const previous=await slider.inputValue();await slider.focus();await slider.press('ArrowRight');await slider.press('Tab');await p.waitForTimeout(600);await ready();
   assert.notEqual(await slider.inputValue(),previous,'real slider changes its parameter');
+  const changedSlider=await readRun();assert.notEqual(changedSlider.request.lef_gamma,controlled.request.lef_gamma);
+  await p.locator('.sidebar-navigation button').first().click();
+  const newMin=Number((controlled.request.lef_min+0.01).toFixed(2));await p.locator('#fair-lefMin').fill(String(newMin));await p.locator('#fair-lefMin').blur();await ready();
+  const changedNumeric=await readRun();assert.equal(changedNumeric.request.lef_min,newMin);
   await p.locator('.context-bar-actions button').first().click();await ready();const reset=await readRun();
   assert.deepEqual(reset.request,controlled.request,'Reset restores the selected asset/threat parameters and retains seed, iterations, currency and controls');
   assert.deepEqual(strip(reset.baseline),strip(controlled.baseline));

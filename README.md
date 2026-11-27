@@ -36,6 +36,8 @@ The public browser edition uses the existing Web Worker engine. Inputs and resul
 
 ![Simulation Dashboard](docs/images/dashboard.png)
 
+![NIST Controls and ROSI](docs/images/controls.png)
+
 Screenshots show real calculations from the release browser engine.
 
 ## How the model works

@@ -83,7 +83,7 @@ jobs:
         run: |
           npm install --prefix .verification-ci --no-save --ignore-scripts playwright@1.62.1
           ./.verification-ci/node_modules/.bin/playwright install --with-deps chromium
-          npm --prefix frontend run preview -- --host 127.0.0.1 --port 4179 --strictPort > /tmp/wayquant-static.log 2>&1 &
+          VITE_BASE_PATH=/WayQuant/ npm --prefix frontend run preview -- --host 127.0.0.1 --port 4179 --strictPort > /tmp/wayquant-static.log 2>&1 &
           for attempt in $(seq 1 30); do curl --fail --silent http://127.0.0.1:4179/WayQuant/ && break || sleep 1; done
           WAYQUANT_PLAYWRIGHT_MODULE="$GITHUB_WORKSPACE/.verification-ci/node_modules/playwright/index.mjs" \
           WAYQUANT_STATIC_URL=http://127.0.0.1:4179/WayQuant/ \

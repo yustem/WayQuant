@@ -1,5 +1,14 @@
 # Reproducing this audit
 
+This guide describes the historical audit environment. Later public-release and
+remote Linux verification are recorded separately in
+[3.0.0 publication verification](../../release/3.0.0/VERIFICATION.md). Historical
+findings, evidence and conclusions retain their original scope. Publication
+copies redact personal absolute paths; original hashes and full local checkpoint
+copies are retained. Audit runners now accept portable tooling locations; use
+`WAYQUANT_PLAYWRIGHT_MODULE` and install Poppler on PATH or set
+`WAYQUANT_PDFTOPPM` for report rendering.
+
 Start with [FINAL_AUDIT_REPORT.md](FINAL_AUDIT_REPORT.md) and [RELEASE_READINESS.md](RELEASE_READINESS.md). Seven required technical reports, [final findings](FINDINGS.md), raw evidence and executable scripts are colocated here. Status meanings: **PASS** verified within stated scope; **FAIL** confirmed defect; **FIXED** confirmed defect corrected/retested; **PARTIAL** incomplete verification; **NOT VERIFIED** insufficient evidence/access; **NOT APPLICABLE** absent from this architecture. No status implies certification.
 
 ## Preserved baseline

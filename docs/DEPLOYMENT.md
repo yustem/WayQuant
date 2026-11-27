@@ -18,7 +18,7 @@ To reproduce a static build from the complete checkout:
 ```sh
 npm --prefix frontend ci
 VITE_EXECUTION_MODE=browser VITE_BASE_PATH=/WayQuant/ npm --prefix frontend run build
-npm --prefix frontend run preview -- --host 127.0.0.1 --port 4179
+VITE_BASE_PATH=/WayQuant/ npm --prefix frontend run preview -- --host 127.0.0.1 --port 4179
 ```
 
 On PowerShell set the variables with `$env:VITE_EXECUTION_MODE='browser'` and
