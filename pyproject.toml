@@ -5,12 +5,18 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "wayquant"
 version = "3.0.0"
-description = "FAIR-inspired annual cyber loss simulation"
+description = "Transparent, reproducible cyber risk quantification with Open FAIR-based Monte Carlo modeling"
+authors = [{name = "Yustem"}]
 readme = "README.md"
 requires-python = ">=3.11"
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 dependencies = ["numpy>=1.26.4,<3"]
+
+[project.urls]
+Source = "https://github.com/yustem/WayQuant"
+Documentation = "https://github.com/yustem/WayQuant/blob/main/docs/MODEL.md"
+Issues = "https://github.com/yustem/WayQuant/issues"
 
 [project.optional-dependencies]
 api = ["fastapi>=0.115,<1", "pydantic>=2.9,<3", "uvicorn>=0.30,<1"]

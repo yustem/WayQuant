@@ -1,0 +1,38 @@
+[
+  {
+    "file": "public-EN-A4.pdf",
+    "pages": 2,
+    "paper": "A4",
+    "width_points": 594.95996,
+    "height_points": 841.91998,
+    "text_and_geometry": "PASS",
+    "visual_review": "PASS: both rendered pages inspected; legible EN/RU, no clipping, overlap, broken glyphs, blank pages or duplicate footers"
+  },
+  {
+    "file": "public-EN-Letter.pdf",
+    "pages": 2,
+    "paper": "Letter",
+    "width_points": 612.0,
+    "height_points": 792.0,
+    "text_and_geometry": "PASS",
+    "visual_review": "PASS: both rendered pages inspected; legible EN/RU, no clipping, overlap, broken glyphs, blank pages or duplicate footers"
+  },
+  {
+    "file": "public-RU-A4.pdf",
+    "pages": 2,
+    "paper": "A4",
+    "width_points": 594.95996,
+    "height_points": 841.91998,
+    "text_and_geometry": "PASS",
+    "visual_review": "PASS: both rendered pages inspected; legible EN/RU, no clipping, overlap, broken glyphs, blank pages or duplicate footers"
+  },
+  {
+    "file": "public-RU-Letter.pdf",
+    "pages": 2,
+    "paper": "Letter",
+    "width_points": 612.0,
+    "height_points": 792.0,
+    "text_and_geometry": "PASS",
+    "visual_review": "PASS: both rendered pages inspected; legible EN/RU, no clipping, overlap, broken glyphs, blank pages or duplicate footers"
+  }
+]

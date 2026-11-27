@@ -17,3 +17,4 @@ tests/** -text
 frontend/tests/** -text
 docs/audit/2026-11-27/scripts/test_independent_math.py -text
 docs/audit/** -text
+docs/release/** -text

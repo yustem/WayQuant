@@ -6,6 +6,10 @@
 
 Version **3.0.0** · English / Русский · Apache-2.0
 
+**[Launch WayQuant](https://yustem.github.io/WayQuant/)** — free in your browser, no installation or sign-in.
+
+[![Verify and deploy](https://github.com/yustem/WayQuant/actions/workflows/ci.yml/badge.svg)](https://github.com/yustem/WayQuant/actions/workflows/ci.yml)
+
 [Documentation](docs/DEPLOYMENT.md) · [Methodology](docs/MODEL.md) · [Installation](#run-locally) · [Audit](docs/audit/2026-11-27/FINAL_AUDIT_REPORT.md) · [Releases](https://github.com/yustem/WayQuant/releases) · [Citation](CITATION.cff)
 
 WayQuant helps risk analysts, security leaders and researchers translate cyber scenarios into annual financial loss distributions. Select an enterprise asset and threat, calibrate frequency and severity, simulate possible years, and compare the financial effect and cost of security controls. Every exported result records its inputs, engine, seed and software version.

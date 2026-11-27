@@ -47,6 +47,7 @@ test('static deployment: subpath assets, real deterministic worker, no API, five
    await p.getByRole('button',{name:lang,exact:true}).click();
    for(let module=0;module<5;module++){
     await p.locator('.sidebar-navigation button').nth(module).click();assert.ok((await p.locator('.workspace-content h1').innerText()).length);assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+    if(module===4)assert.match(await p.locator('[data-search-target="architecture-viewer"]').innerText(),/FairMonteCarloEngine/);
     const workspace=p.locator('.workspace-scroll');await workspace.evaluate(e=>e.scrollTop=0);
     const sidebarBefore=await p.locator('aside').boundingBox(),headerBefore=await p.locator('.context-header').boundingBox();
     const box=await workspace.boundingBox();await p.mouse.move(box.x+box.width/2,box.y+box.height/2);await p.mouse.wheel(0,800);await p.waitForTimeout(100);
@@ -75,9 +76,12 @@ test('static deployment: subpath assets, real deterministic worker, no API, five
   await p.locator('.sidebar-navigation button').first().click();
   const newMin=Number((controlled.request.lef_min+0.01).toFixed(2));await p.locator('#fair-lefMin').fill(String(newMin));await p.locator('#fair-lefMin').blur();await ready();
   const changedNumeric=await readRun();assert.equal(changedNumeric.request.lef_min,newMin);
+  await p.locator('.sidebar-navigation button').first().click();await p.locator('#fair-lefMin').fill('');assert.equal(await p.locator('.context-bar-actions button').last().isDisabled(),true,'an empty draft cannot execute');
+  await p.locator('#fair-lefMin').fill(String(newMin));await p.locator('#fair-lefMin').blur();await ready();
   await p.locator('.context-bar-actions button').first().click();await ready();const reset=await readRun();
   assert.deepEqual(reset.request,controlled.request,'Reset restores the selected asset/threat parameters and retains seed, iterations, currency and controls');
   assert.deepEqual(strip(reset.baseline),strip(controlled.baseline));
+  if(process.env.WAYQUANT_STATIC_OUTPUT)await fs.writeFile(path.join(process.env.WAYQUANT_STATIC_OUTPUT,'confirmed-report-run.json'),JSON.stringify(reset,null,2));
   for(const lang of ['EN','RU']){
    await p.getByRole('button',{name:lang,exact:true}).click();
    assert.equal(await p.locator('.report-heading img').evaluate(e=>e.complete&&e.naturalWidth>0),true);
