@@ -1,0 +1,18 @@
+{
+  "filesInScope": 84,
+  "credentialPatterns": [
+    "private-key",
+    "aws-access-key",
+    "github-token"
+  ],
+  "potentialCredentialHits": [],
+  "limitations": "Small deterministic signature scan; not a full secret/history/SAST audit. No Git history exists.",
+  "productionReview": {
+    "apiAuth": "absent; local-only use",
+    "tls": "external deployment responsibility",
+    "rateLimit": "concurrency gate only; no time-based client limiter",
+    "nginxBodyLimit": "64k on API location",
+    "dockerExecution": "NOT VERIFIED",
+    "publicDeployment": "NOT VERIFIED"
+  }
+}

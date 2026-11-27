@@ -1,0 +1,70 @@
+[
+  {
+    "name": "python-tests",
+    "command": [
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\docs\\audit\\2026-11-27\\evidence\\baseline-pytest.xml"
+    ],
+    "returncode": 0,
+    "seconds": 3.701
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "npm.cmd",
+      "run",
+      "typecheck"
+    ],
+    "returncode": 0,
+    "seconds": 2.639
+  },
+  {
+    "name": "frontend-tests",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\command-palette.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\context-select.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\engine.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\header.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\layout.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\print.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\shell.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\ux.test.mjs"
+    ],
+    "returncode": 0,
+    "seconds": 59.757
+  },
+  {
+    "name": "build",
+    "command": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "npm.cmd",
+      "run",
+      "build"
+    ],
+    "returncode": 0,
+    "seconds": 8.901
+  },
+  {
+    "name": "pip-check",
+    "command": [
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0,
+    "seconds": 1.002
+  }
+]

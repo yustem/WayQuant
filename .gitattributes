@@ -1,0 +1,19 @@
+* text=auto
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+*.svg text
+*.png binary
+*.pdf binary
+*.woff2 binary
+# Preserve the exact audited bytes, including their original line endings.
+frontend/src/engine.js -text
+frontend/src/simulation.worker.js -text
+frontend/src/workerClient.ts -text
+frontend/src/provenance.js -text
+frontend/src/data/threatControls.ts -text
+backend/app/engine/fair_monte_carlo.py -text
+backend/app/main.py -text
+tests/** -text
+frontend/tests/** -text
+docs/audit/2026-11-27/scripts/test_independent_math.py -text
+docs/audit/** -text

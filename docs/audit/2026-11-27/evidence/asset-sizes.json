@@ -1,0 +1,22 @@
+[
+  {
+    "asset": "assets/index-F0-B8ED8.css",
+    "bytes": 43679,
+    "gzipBytes": 9148
+  },
+  {
+    "asset": "assets/index-uo2lV5i5.js",
+    "bytes": 311187,
+    "gzipBytes": 93713
+  },
+  {
+    "asset": "assets/simulation.worker-CBhRxtxm.js",
+    "bytes": 4537,
+    "gzipBytes": 2300
+  },
+  {
+    "asset": "index.html",
+    "bytes": 665,
+    "gzipBytes": 419
+  }
+]

@@ -1,0 +1,44 @@
+[
+  {
+    "field": "random_seed",
+    "value": "True",
+    "status": 200,
+    "body": "{\"metadata\":{\"engine\":\"numpy\",\"engine_version\":\"3.0.0\",\"software_version\":\"3.0.0\",\"model\":\"shifted-lognormal-mode-p95-v1\",\"inputs\":{\"lef_min\":0.25,\"lef_mode\":0.85,\"lef_max\":2.4,\"lef_gamma\":4.0,\"plm_min\":180000.0,\"plm_mode\":650000.0,\"plm_max\":2400000."
+  },
+  {
+    "field": "iterations",
+    "value": "1000",
+    "status": 200,
+    "body": "{\"metadata\":{\"engine\":\"numpy\",\"engine_version\":\"3.0.0\",\"software_version\":\"3.0.0\",\"model\":\"shifted-lognormal-mode-p95-v1\",\"inputs\":{\"lef_min\":0.25,\"lef_mode\":0.85,\"lef_max\":2.4,\"lef_gamma\":4.0,\"plm_min\":180000.0,\"plm_mode\":650000.0,\"plm_max\":2400000."
+  },
+  {
+    "field": "lef_min",
+    "value": "nan",
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "field": "plm_max",
+    "value": "inf",
+    "status": 500,
+    "body": "Internal Server Error"
+  },
+  {
+    "field": "slm_mode",
+    "value": "None",
+    "status": 422,
+    "body": "{\"detail\":[{\"type\":\"float_type\",\"loc\":[\"body\",\"slm_mode\"],\"msg\":\"Input should be a valid number\",\"input\":null}]}"
+  },
+  {
+    "field": "random_seed",
+    "value": "-1",
+    "status": 422,
+    "body": "{\"detail\":[{\"type\":\"greater_than_equal\",\"loc\":[\"body\",\"random_seed\"],\"msg\":\"Input should be greater than or equal to 0\",\"input\":-1,\"ctx\":{\"ge\":0}}]}"
+  },
+  {
+    "field": "slef_prob",
+    "value": "1.1",
+    "status": 422,
+    "body": "{\"detail\":[{\"type\":\"less_than_equal\",\"loc\":[\"body\",\"slef_prob\"],\"msg\":\"Input should be less than or equal to 1\",\"input\":1.1,\"ctx\":{\"le\":1.0}}]}"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "path": ".github/workflows/ci.yml",
+    "change": "modified",
+    "before": "8fdb32e3a9ecf30d8f5de96249e154a6d88780520e92cba08b7cddd1027776cb",
+    "after": "c121a240022559bfeab8c5bba3d69183fd727bface46698e8b74910196b016c1"
+  },
+  {
+    "path": "backend/app/engine/fair_monte_carlo.py",
+    "change": "modified",
+    "before": "eb1681cc0e77ee3d6a8b897abaf01a107ee3da0efa883914cca871ec623b471c",
+    "after": "df3343721850fa59a2e5175b09d57daade017e18fe9d9cdbc62a6ef61ce516a1"
+  },
+  {
+    "path": "backend/app/main.py",
+    "change": "modified",
+    "before": "63c26b7e6da10d0116c5f3ee65152e8eed97106df8e522e194795cff1301a271",
+    "after": "d8867074c4989a41ca0efdf9d9c6c6072b6ca5d3e4b28fff94a187b014f51f7f"
+  },
+  {
+    "path": "docker-compose.yml",
+    "change": "modified",
+    "before": "423be1fa6801ba7b49c1bd044196ea57440d877115bd50b8ce610a0ff1956735",
+    "after": "d6c64c8fd4b7831cf02a64f871a6f1812d7e856dd02086e576ea22f46d5427ed"
+  },
+  {
+    "path": "docs/MODEL.md",
+    "change": "modified",
+    "before": "43a105069d15fe5633959b68be07d1acb90ab19c2f1f7b9909ffb4dddd03bd16",
+    "after": "82708e2e32effb284492a8e3fb18f7401c0fe4389114db26d26254e6b82d7666"
+  },
+  {
+    "path": "frontend/index.html",
+    "change": "modified",
+    "before": "a61bc749d25e0e0134878ee3625ee0c9ef72b470ca0538e7b2dbe31de225d06f",
+    "after": "9c85bad5448fc026188d5965c4cdce5882cee7b459e5129ea497fb9313c721cb"
+  },
+  {
+    "path": "frontend/src/apiValidation.ts",
+    "change": "added"
+  },
+  {
+    "path": "frontend/src/App.tsx",
+    "change": "modified",
+    "before": "98b9b2e56b2fd066d82799bb7a588430a5d7d6ea71746d24b045e092e6a214bb",
+    "after": "e1f084b5f6dd7778e522a8cc329ccfe619db9971f565606f195e4899229c09a1"
+  },
+  {
+    "path": "frontend/src/commandPalette.css",
+    "change": "modified",
+    "before": "fcf0084f555fc57c2aeba71d7562be1b5424add7e12f8ed3a9ca601a13afd256",
+    "after": "f325ccdd1adb4677141aa4eaa52428185dc63bb07c764a52964da94005db9ecf"
+  },
+  {
+    "path": "frontend/src/CommandPalette.tsx",
+    "change": "modified",
+    "before": "7cb1b2ec6f295df2d824fec66321e24b8bfb4f3b3cd099f13b32e4ebae634ec3",
+    "after": "b6bb1a9e9abf50a38187e00f62435db5d058e9e5d8740335e6e003b48ac87260"
+  },
+  {
+    "path": "frontend/src/engine.js",
+    "change": "modified",
+    "before": "7e32847607c7cf64e3d3f33b72d8c7cc96528dad440fb36f3c91ea7ad2acc1de",
+    "after": "e98e842f7a32904f4d5c5fe36bf35992d4164bf3a126f184bc70a7fd6ce276f4"
+  },
+  {
+    "path": "frontend/src/index.css",
+    "change": "modified",
+    "before": "ff48c081736cbf76a372b25668a2ac4d039be7e7d3c4fba5f7d2cf13b7f57e32",
+    "after": "095511b3a0722100269e41d39a2a8661dfbccd2dbe5fb7469912fc4c900b85df"
+  },
+  {
+    "path": "frontend/src/workerClient.ts",
+    "change": "modified",
+    "before": "467f3de95f4065ac1eaa2a74ca9e1f2b55dd49a0a6ef7f8c0b44a64efddaeb0d",
+    "after": "74956be9310c68c73acf48d667cc58cd3ad5d0c1bb835b0c595cb2646da337f8"
+  },
+  {
+    "path": "frontend/tests/audit-accessibility.test.mjs",
+    "change": "added"
+  },
+  {
+    "path": "frontend/tests/audit-disclosures.test.mjs",
+    "change": "added"
+  },
+  {
+    "path": "frontend/tests/audit-engine-status.test.mjs",
+    "change": "added"
+  },
+  {
+    "path": "frontend/tests/audit-engine-validation.test.mjs",
+    "change": "added"
+  },
+  {
+    "path": "frontend/tests/audit-failure-matrix.test.mjs",
+    "change": "added"
+  },
+  {
+    "path": "frontend/tests/audit-reliability.test.mjs",
+    "change": "added"
+  },
+  {
+    "path": "frontend/tests/command-palette.test.mjs",
+    "change": "modified",
+    "before": "c4c4f2942ca9f01eb319036e41fe5cdbc060bfa83572b7773cbdaf3963feecc0",
+    "after": "cc6db8e0f64cdea6adfe9b56c95fc5e4158b4f1d34b181078b441dc3361230a3"
+  },
+  {
+    "path": "frontend/tests/context-select.test.mjs",
+    "change": "modified",
+    "before": "c79aa226b3ec6c09f4adbf7ca9ef423dd9de462e0edd9c72df6c2da2681270d7",
+    "after": "1e1612eeed469617a8d9747befa9ae7f47d1090692cd04ea2f7f90c83c1225bb"
+  },
+  {
+    "path": "frontend/tests/engine.test.mjs",
+    "change": "modified",
+    "before": "be3dff7394155829c0f073c4ddf54a95f4c2d122b4ec240d1519728d0e08d409",
+    "after": "8e34ae2996e8f053b61d6a8bfae55011bb4ed9cff65bcde233e4add88ba6bbc6"
+  },
+  {
+    "path": "frontend/tests/header.test.mjs",
+    "change": "modified",
+    "before": "e4036a2e282f9e6da806479f2056b61c0f7c96e2a2e84b26a2884a243f69a95e",
+    "after": "3a9a75861b4577e6f9445a7288746b01308ffc50af1d8995245ea5b36c9900df"
+  },
+  {
+    "path": "frontend/tests/layout.test.mjs",
+    "change": "modified",
+    "before": "28d81910f1c7a22faaa019bb5fff84be49025dd8ac5987b34a65f26410167c51",
+    "after": "2b3d9ebf2b8d71d44d0b738d174f2ea8203a5227d8c00aec5c5e9ad8f473a86a"
+  },
+  {
+    "path": "frontend/tests/print.test.mjs",
+    "change": "modified",
+    "before": "dff51983721fee16555b313e49660d0ddb53f25b6df6c404c0ab7a94e02a7ee2",
+    "after": "6941529349dd545ec7269677d42ea05cd3eb2b5d062f4520285c0c7615d23723"
+  },
+  {
+    "path": "frontend/tests/shell.test.mjs",
+    "change": "modified",
+    "before": "f50cd7710727b1afdb176cd4f9efce1b3ce64a92b5ec73b94b3738a6235208f5",
+    "after": "9cc8101706a12ec5cc8339c1b7bab6a88da657fe5dca910889802cd3f96ab344"
+  },
+  {
+    "path": "frontend/tests/ux.test.mjs",
+    "change": "modified",
+    "before": "3517bcab672da2ae1b71dbb8449f395367bbf9d36d583f43336be40edb9a294f",
+    "after": "ed2d5e057f990ff37f81c1cd7ddacf8216e95ca5b2aec1344f84ef85ab4e4cdf"
+  },
+  {
+    "path": "frontend/tests/worker-client.test.mjs",
+    "change": "added"
+  },
+  {
+    "path": "tests/test_audit_boundaries.py",
+    "change": "added"
+  },
+  {
+    "path": "tests/test_deployment_policy.py",
+    "change": "added"
+  }
+]

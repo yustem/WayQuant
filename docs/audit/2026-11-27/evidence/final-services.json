@@ -1,0 +1,19 @@
+{
+  "4176": {
+    "reachable": false,
+    "reason": "URLError"
+  },
+  "4178": {
+    "reachable": false,
+    "reason": "URLError"
+  },
+  "5173": {
+    "reachable": true,
+    "status": 200
+  },
+  "8000": {
+    "reachable": true,
+    "status": 200
+  },
+  "dockerCommandAvailable": false
+}

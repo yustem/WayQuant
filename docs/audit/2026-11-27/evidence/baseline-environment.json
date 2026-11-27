@@ -1,0 +1,66 @@
+{
+  "captured_utc": "2026-11-26T22:46:51.297745+00:00",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "root": "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant",
+  "checkpoint": "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.verification-audit\\checkpoint",
+  "files": 74,
+  "baseline_notes": [
+    "No .git directory present; branch/commit/diff unavailable.",
+    "Initial pytest invocation failed: local venv lacked pytest. Installing audit/test tools without changing application dependency files.",
+    "Latest toolbar/search work is included in this audit baseline; prior .verification-* checkpoints preserved."
+  ],
+  "git_status": {
+    "command": [
+      "$LOCAL_TOOL_PATH",
+      "status",
+      "--short",
+      "--branch"
+    ],
+    "returncode": 128,
+    "stdout": "",
+    "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+  },
+  "git_commit": {
+    "command": [
+      "$LOCAL_TOOL_PATH",
+      "rev-parse",
+      "HEAD"
+    ],
+    "returncode": 128,
+    "stdout": "",
+    "stderr": "fatal: not a git repository (or any of the parent directories): .git\n"
+  },
+  "node": {
+    "command": [
+      "node",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "v24.14.1\n",
+    "stderr": ""
+  },
+  "npm": {
+    "command": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "npm.cmd",
+      "--version"
+    ],
+    "returncode": 0,
+    "stdout": "11.11.0\n",
+    "stderr": ""
+  },
+  "pip_freeze": {
+    "command": [
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "freeze"
+    ],
+    "returncode": 0,
+    "stdout": "annotated-doc==0.0.7\nannotated-types==0.8.0\nanyio==4.16.0\nbuild==1.6.1\ncertifi==2026.11.20\nclick==8.5.1\ncolorama==0.4.6\nfastapi==0.165.0\nh11==0.16.0\nhttpcore==1.0.9\nhttpx==0.29.0\nidna==3.20\niniconfig==2.3.1\nnumpy==2.5.5\nopentelemetry-api==1.45.2\npackaging==26.4\npillow==13.0.0\npluggy==1.7.0\npsutil==7.2.2\npydantic==2.14.4\npydantic_core==2.50.5\nPygments==2.21.0\npypdf==6.21.4\npyproject_hooks==1.3.3\npytest==9.2.0\nscipy==1.18.1\nstarlette==1.10.0\ntyping-inspection==0.4.5\ntyping_extensions==4.16.0\nuvicorn==0.54.0\n",
+    "stderr": ""
+  }
+}

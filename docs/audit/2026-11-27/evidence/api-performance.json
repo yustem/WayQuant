@@ -1,0 +1,195 @@
+{
+  "requests": [
+    {
+      "iterations": 1000,
+      "repeat": 1,
+      "httpStatus": 200,
+      "wallMs": 15.421399999468122,
+      "reportedCoreMs": 3.55,
+      "seed": 0,
+      "metrics": {
+        "ale": 2949007.22,
+        "cyber_var_95": 11736623.3,
+        "cyber_var_99": 20915931.01,
+        "tail_cvar_99": 28118763.28
+      }
+    },
+    {
+      "iterations": 1000,
+      "repeat": 2,
+      "httpStatus": 200,
+      "wallMs": 22.936000001209322,
+      "reportedCoreMs": 3.11,
+      "seed": 0,
+      "metrics": {
+        "ale": 2949007.22,
+        "cyber_var_95": 11736623.3,
+        "cyber_var_99": 20915931.01,
+        "tail_cvar_99": 28118763.28
+      }
+    },
+    {
+      "iterations": 1000,
+      "repeat": 3,
+      "httpStatus": 200,
+      "wallMs": 30.656399998406414,
+      "reportedCoreMs": 3.13,
+      "seed": 0,
+      "metrics": {
+        "ale": 2949007.22,
+        "cyber_var_95": 11736623.3,
+        "cyber_var_99": 20915931.01,
+        "tail_cvar_99": 28118763.28
+      }
+    },
+    {
+      "iterations": 10000,
+      "repeat": 1,
+      "httpStatus": 200,
+      "wallMs": 36.702000001241686,
+      "reportedCoreMs": 7.78,
+      "seed": 0,
+      "metrics": {
+        "ale": 2841595.21,
+        "cyber_var_95": 11056235.85,
+        "cyber_var_99": 20080153.73,
+        "tail_cvar_99": 29365184.23
+      }
+    },
+    {
+      "iterations": 10000,
+      "repeat": 2,
+      "httpStatus": 200,
+      "wallMs": 31.272899999748915,
+      "reportedCoreMs": 7.26,
+      "seed": 0,
+      "metrics": {
+        "ale": 2841595.21,
+        "cyber_var_95": 11056235.85,
+        "cyber_var_99": 20080153.73,
+        "tail_cvar_99": 29365184.23
+      }
+    },
+    {
+      "iterations": 10000,
+      "repeat": 3,
+      "httpStatus": 200,
+      "wallMs": 33.273999997618375,
+      "reportedCoreMs": 7.39,
+      "seed": 0,
+      "metrics": {
+        "ale": 2841595.21,
+        "cyber_var_95": 11056235.85,
+        "cyber_var_99": 20080153.73,
+        "tail_cvar_99": 29365184.23
+      }
+    },
+    {
+      "iterations": 50000,
+      "repeat": 1,
+      "httpStatus": 200,
+      "wallMs": 31.28600000127335,
+      "reportedCoreMs": 25.83,
+      "seed": 0,
+      "metrics": {
+        "ale": 2799966.03,
+        "cyber_var_95": 11002488.82,
+        "cyber_var_99": 18685157.02,
+        "tail_cvar_99": 25765539.44
+      }
+    },
+    {
+      "iterations": 50000,
+      "repeat": 2,
+      "httpStatus": 200,
+      "wallMs": 31.21399999872665,
+      "reportedCoreMs": 26.52,
+      "seed": 0,
+      "metrics": {
+        "ale": 2799966.03,
+        "cyber_var_95": 11002488.82,
+        "cyber_var_99": 18685157.02,
+        "tail_cvar_99": 25765539.44
+      }
+    },
+    {
+      "iterations": 50000,
+      "repeat": 3,
+      "httpStatus": 200,
+      "wallMs": 30.93760000047041,
+      "reportedCoreMs": 26.11,
+      "seed": 0,
+      "metrics": {
+        "ale": 2799966.03,
+        "cyber_var_95": 11002488.82,
+        "cyber_var_99": 18685157.02,
+        "tail_cvar_99": 25765539.44
+      }
+    },
+    {
+      "iterations": 250000,
+      "repeat": 1,
+      "httpStatus": 200,
+      "wallMs": 150.1503999970737,
+      "reportedCoreMs": 143.69,
+      "seed": 0,
+      "metrics": {
+        "ale": 2817894.7,
+        "cyber_var_95": 10887159.83,
+        "cyber_var_99": 19265282.0,
+        "tail_cvar_99": 26197536.1
+      }
+    },
+    {
+      "iterations": 250000,
+      "repeat": 2,
+      "httpStatus": 200,
+      "wallMs": 169.42099999869242,
+      "reportedCoreMs": 147.74,
+      "seed": 0,
+      "metrics": {
+        "ale": 2817894.7,
+        "cyber_var_95": 10887159.83,
+        "cyber_var_99": 19265282.0,
+        "tail_cvar_99": 26197536.1
+      }
+    },
+    {
+      "iterations": 250000,
+      "repeat": 3,
+      "httpStatus": 200,
+      "wallMs": 168.23399999702815,
+      "reportedCoreMs": 143.35,
+      "seed": 0,
+      "metrics": {
+        "ale": 2817894.7,
+        "cyber_var_95": 10887159.83,
+        "cyber_var_99": 19265282.0,
+        "tail_cvar_99": 26197536.1
+      }
+    }
+  ],
+  "summary": [
+    {
+      "iterations": 1000,
+      "repeats": 3,
+      "medianHttpWallMs": 22.936000001209322
+    },
+    {
+      "iterations": 10000,
+      "repeats": 3,
+      "medianHttpWallMs": 33.273999997618375
+    },
+    {
+      "iterations": 50000,
+      "repeats": 3,
+      "medianHttpWallMs": 31.21399999872665
+    },
+    {
+      "iterations": 250000,
+      "repeats": 3,
+      "medianHttpWallMs": 168.23399999702815
+    }
+  ],
+  "scope": "Sequential loopback requests against current project API; includes serialization; no controls; not sustained load or an Internet SLA."
+}

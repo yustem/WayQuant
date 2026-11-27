@@ -1,0 +1,498 @@
+{
+  "runsPerEngine": 80,
+  "numpySampledPeakRssBytes": 128012288,
+  "rssSamplingIntervalMs": 2,
+  "note": "Node records end-of-run RSS, not peak; measurements include runtime/cache and are not isolated container guarantees. Tail ranges are observed across eight seeds, not confidence intervals.",
+  "summary": [
+    {
+      "engine": "numpy",
+      "case": "constant-poisson",
+      "n": 1000,
+      "seeds": 8,
+      "meanALE": 100.8,
+      "expectedALE": 100,
+      "aleRMSE": 3.4380226875342177,
+      "var95Range": [
+        300.0,
+        300.0
+      ],
+      "var99Range": [
+        400.0,
+        400.0
+      ],
+      "cvar99Range": [
+        410.0,
+        480.0
+      ],
+      "medianWallMs": 3.4546999995654915,
+      "maxObservedRssAfter": 104706048,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "numpy",
+      "case": "constant-poisson",
+      "n": 10000,
+      "seeds": 8,
+      "meanALE": 100.16624999999999,
+      "expectedALE": 100,
+      "aleRMSE": 1.4845495949950627,
+      "var95Range": [
+        300.0,
+        300.0
+      ],
+      "var99Range": [
+        400.0,
+        400.0
+      ],
+      "cvar99Range": [
+        437.0,
+        458.0
+      ],
+      "medianWallMs": 6.714850002026651,
+      "maxObservedRssAfter": 105435136,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "numpy",
+      "case": "constant-poisson",
+      "n": 50000,
+      "seeds": 8,
+      "meanALE": 99.845,
+      "expectedALE": 100,
+      "aleRMSE": 0.38091993909482,
+      "var95Range": [
+        300.0,
+        300.0
+      ],
+      "var99Range": [
+        400.0,
+        400.0
+      ],
+      "cvar99Range": [
+        436.6,
+        446.8
+      ],
+      "medianWallMs": 19.206249999115244,
+      "maxObservedRssAfter": 106483712,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "numpy",
+      "case": "constant-poisson",
+      "n": 100000,
+      "seeds": 8,
+      "meanALE": 99.7725,
+      "expectedALE": 100,
+      "aleRMSE": 0.4169832130913672,
+      "var95Range": [
+        300.0,
+        300.0
+      ],
+      "var99Range": [
+        400.0,
+        400.0
+      ],
+      "cvar99Range": [
+        440.4,
+        446.1
+      ],
+      "medianWallMs": 34.8170500001288,
+      "maxObservedRssAfter": 106119168,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "numpy",
+      "case": "constant-poisson",
+      "n": 250000,
+      "seeds": 8,
+      "meanALE": 99.87125,
+      "expectedALE": 100,
+      "aleRMSE": 0.21133504205407982,
+      "var95Range": [
+        300.0,
+        300.0
+      ],
+      "var99Range": [
+        400.0,
+        400.0
+      ],
+      "cvar99Range": [
+        439.88,
+        444.64
+      ],
+      "medianWallMs": 95.56865000195103,
+      "maxObservedRssAfter": 106127360,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "numpy",
+      "case": "synthetic-heavy-tail",
+      "n": 1000,
+      "seeds": 8,
+      "meanALE": 2749931.5075000003,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 129188.97316982846,
+      "var95Range": [
+        9908548.34,
+        11356510.16
+      ],
+      "var99Range": [
+        16813048.96,
+        21576544.73
+      ],
+      "cvar99Range": [
+        22703961.32,
+        29908925.47
+      ],
+      "medianWallMs": 3.2986000005621463,
+      "maxObservedRssAfter": 106258432
+    },
+    {
+      "engine": "numpy",
+      "case": "synthetic-heavy-tail",
+      "n": 10000,
+      "seeds": 8,
+      "meanALE": 2815819.95875,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 27531.488697392728,
+      "var95Range": [
+        10656319.02,
+        11115513.79
+      ],
+      "var99Range": [
+        18588401.88,
+        19475116.52
+      ],
+      "cvar99Range": [
+        25591124.81,
+        27449490.53
+      ],
+      "medianWallMs": 7.55350000144972,
+      "maxObservedRssAfter": 106299392
+    },
+    {
+      "engine": "numpy",
+      "case": "synthetic-heavy-tail",
+      "n": 50000,
+      "seeds": 8,
+      "meanALE": 2807316.78875,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 12457.01381782862,
+      "var95Range": [
+        10798604.06,
+        10960652.44
+      ],
+      "var99Range": [
+        18620857.36,
+        19545884.38
+      ],
+      "cvar99Range": [
+        25378675.59,
+        26509388.91
+      ],
+      "medianWallMs": 25.71159999752126,
+      "maxObservedRssAfter": 106291200
+    },
+    {
+      "engine": "numpy",
+      "case": "synthetic-heavy-tail",
+      "n": 100000,
+      "seeds": 8,
+      "meanALE": 2817744.14875,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 15382.400421788372,
+      "var95Range": [
+        10842494.49,
+        10987891.53
+      ],
+      "var99Range": [
+        18882855.63,
+        19322379.55
+      ],
+      "cvar99Range": [
+        25568813.4,
+        26302683.37
+      ],
+      "medianWallMs": 49.36115000054997,
+      "maxObservedRssAfter": 105508864
+    },
+    {
+      "engine": "numpy",
+      "case": "synthetic-heavy-tail",
+      "n": 250000,
+      "seeds": 8,
+      "meanALE": 2813484.77875,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 5766.827276402696,
+      "var95Range": [
+        10883927.61,
+        10954370.91
+      ],
+      "var99Range": [
+        19027273.86,
+        19218764.93
+      ],
+      "cvar99Range": [
+        25645690.37,
+        26246620.52
+      ],
+      "medianWallMs": 131.51100000141014,
+      "maxObservedRssAfter": 106487808
+    },
+    {
+      "engine": "browser",
+      "case": "constant-poisson",
+      "n": 1000,
+      "seeds": 8,
+      "meanALE": 99.575,
+      "expectedALE": 100,
+      "aleRMSE": 1.7255433926737391,
+      "var95Range": [
+        300,
+        300
+      ],
+      "var99Range": [
+        400,
+        400
+      ],
+      "cvar99Range": [
+        420,
+        470
+      ],
+      "medianWallMs": 0.7630999999999979,
+      "maxObservedRssAfter": 62775296,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "browser",
+      "case": "constant-poisson",
+      "n": 10000,
+      "seeds": 8,
+      "meanALE": 100.41125,
+      "expectedALE": 100,
+      "aleRMSE": 0.8695760461282256,
+      "var95Range": [
+        300,
+        300
+      ],
+      "var99Range": [
+        400,
+        400
+      ],
+      "cvar99Range": [
+        430,
+        451
+      ],
+      "medianWallMs": 3.3801500000000004,
+      "maxObservedRssAfter": 66215936,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "browser",
+      "case": "constant-poisson",
+      "n": 50000,
+      "seeds": 8,
+      "meanALE": 100.3105,
+      "expectedALE": 100,
+      "aleRMSE": 0.5544808382622444,
+      "var95Range": [
+        300,
+        300
+      ],
+      "var99Range": [
+        400,
+        400
+      ],
+      "cvar99Range": [
+        438.2,
+        448.4
+      ],
+      "medianWallMs": 15.3549,
+      "maxObservedRssAfter": 85020672,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "browser",
+      "case": "constant-poisson",
+      "n": 100000,
+      "seeds": 8,
+      "meanALE": 100.21724999999999,
+      "expectedALE": 100,
+      "aleRMSE": 0.4173278088026228,
+      "var95Range": [
+        300,
+        300
+      ],
+      "var99Range": [
+        400,
+        400
+      ],
+      "cvar99Range": [
+        441.6,
+        446.3
+      ],
+      "medianWallMs": 28.30545000000002,
+      "maxObservedRssAfter": 99860480,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "browser",
+      "case": "constant-poisson",
+      "n": 250000,
+      "seeds": 8,
+      "meanALE": 100.1216,
+      "expectedALE": 100,
+      "aleRMSE": 0.19656713865750983,
+      "var95Range": [
+        300,
+        300
+      ],
+      "var99Range": [
+        400,
+        400
+      ],
+      "cvar99Range": [
+        440.68,
+        446.48
+      ],
+      "medianWallMs": 74.63329999999996,
+      "maxObservedRssAfter": 134852608,
+      "exactVaR95": 300.0,
+      "exactVaR99": 400.0,
+      "exactRankLimitES99": 443.4876956677895
+    },
+    {
+      "engine": "browser",
+      "case": "synthetic-heavy-tail",
+      "n": 1000,
+      "seeds": 8,
+      "meanALE": 2732535.2689913274,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 102834.86911669001,
+      "var95Range": [
+        10033051.376004674,
+        11313414.567374242
+      ],
+      "var99Range": [
+        16969105.258983463,
+        20839757.153667994
+      ],
+      "cvar99Range": [
+        21619980.436229102,
+        27009190.690609135
+      ],
+      "medianWallMs": 1.1591999999999416,
+      "maxObservedRssAfter": 137842688
+    },
+    {
+      "engine": "browser",
+      "case": "synthetic-heavy-tail",
+      "n": 10000,
+      "seeds": 8,
+      "meanALE": 2808144.9735399666,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 44698.29932119903,
+      "var95Range": [
+        10513029.003916448,
+        11162755.758590205
+      ],
+      "var99Range": [
+        18116219.4543471,
+        20191062.83828455
+      ],
+      "cvar99Range": [
+        24821147.169065032,
+        27090424.129332293
+      ],
+      "medianWallMs": 8.017799999999966,
+      "maxObservedRssAfter": 137945088
+    },
+    {
+      "engine": "browser",
+      "case": "synthetic-heavy-tail",
+      "n": 50000,
+      "seeds": 8,
+      "meanALE": 2809453.451734984,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 20265.761622288926,
+      "var95Range": [
+        10756048.084548317,
+        11041442.13605985
+      ],
+      "var99Range": [
+        18549039.98124438,
+        19635542.498278935
+      ],
+      "cvar99Range": [
+        25589508.228313617,
+        26661909.184071306
+      ],
+      "medianWallMs": 38.53054999999995,
+      "maxObservedRssAfter": 144666624
+    },
+    {
+      "engine": "browser",
+      "case": "synthetic-heavy-tail",
+      "n": 100000,
+      "seeds": 8,
+      "meanALE": 2812102.0911651864,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 10105.40807213275,
+      "var95Range": [
+        10824392.168862551,
+        10957981.683178794
+      ],
+      "var99Range": [
+        18792657.804512337,
+        19417016.05240863
+      ],
+      "cvar99Range": [
+        25640490.078119025,
+        26518686.03291388
+      ],
+      "medianWallMs": 77.69080000000008,
+      "maxObservedRssAfter": 171900928
+    },
+    {
+      "engine": "browser",
+      "case": "synthetic-heavy-tail",
+      "n": 250000,
+      "seeds": 8,
+      "meanALE": 2812942.0223854347,
+      "expectedALE": 2813325.9877527696,
+      "aleRMSE": 11340.529682381799,
+      "var95Range": [
+        10828037.227958543,
+        10938041.66844393
+      ],
+      "var99Range": [
+        19030379.93839612,
+        19288703.7682376
+      ],
+      "cvar99Range": [
+        25829833.805702202,
+        26299840.81473308
+      ],
+      "medianWallMs": 199.84135000000015,
+      "maxObservedRssAfter": 162033664
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "variant": "default",
+    "lang": "EN",
+    "pages": 2,
+    "kpiOverflow": [
+      {
+        "text": "$2,770,208",
+        "overflow": false
+      },
+      {
+        "text": "$10,757,368",
+        "overflow": false
+      },
+      {
+        "text": "$10,757,368",
+        "overflow": false
+      },
+      {
+        "text": "36.53%",
+        "overflow": false
+      },
+      {
+        "text": "+0.0%",
+        "overflow": false
+      }
+    ],
+    "seed": 42001,
+    "iterations": 50000,
+    "currency": "USD",
+    "ale": 2770207.566126974,
+    "var95": 10757368.161003888,
+    "activeControls": 0
+  },
+  {
+    "variant": "default",
+    "lang": "RU",
+    "pages": 2,
+    "kpiOverflow": [
+      {
+        "text": "$2,770,208",
+        "overflow": false
+      },
+      {
+        "text": "$10,757,368",
+        "overflow": false
+      },
+      {
+        "text": "$10,757,368",
+        "overflow": false
+      },
+      {
+        "text": "36.53%",
+        "overflow": false
+      },
+      {
+        "text": "+0.0%",
+        "overflow": false
+      }
+    ],
+    "seed": 42001,
+    "iterations": 50000,
+    "currency": "USD",
+    "ale": 2770207.566126974,
+    "var95": 10757368.161003888,
+    "activeControls": 0
+  },
+  {
+    "variant": "large",
+    "lang": "EN",
+    "pages": 2,
+    "kpiOverflow": [
+      {
+        "text": "$14,688,160,000,000",
+        "overflow": false
+      },
+      {
+        "text": "$24,000,000,000,000",
+        "overflow": false
+      },
+      {
+        "text": "$2,325,600,000,000",
+        "overflow": false
+      },
+      {
+        "text": "99.97%",
+        "overflow": false
+      },
+      {
+        "text": "+3386316524.4%",
+        "overflow": false
+      }
+    ],
+    "seed": 42001,
+    "iterations": 50000,
+    "currency": "USD",
+    "ale": 14688160000000,
+    "var95": 24000000000000,
+    "activeControls": 4
+  },
+  {
+    "variant": "large",
+    "lang": "RU",
+    "pages": 2,
+    "kpiOverflow": [
+      {
+        "text": "$14,688,160,000,000",
+        "overflow": false
+      },
+      {
+        "text": "$24,000,000,000,000",
+        "overflow": false
+      },
+      {
+        "text": "$2,325,600,000,000",
+        "overflow": false
+      },
+      {
+        "text": "99.97%",
+        "overflow": false
+      },
+      {
+        "text": "+3386316524.4%",
+        "overflow": false
+      }
+    ],
+    "seed": 42001,
+    "iterations": 50000,
+    "currency": "USD",
+    "ale": 14688160000000,
+    "var95": 24000000000000,
+    "activeControls": 4
+  }
+]

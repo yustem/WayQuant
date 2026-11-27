@@ -1,0 +1,1484 @@
+{
+  "cases": [
+    {
+      "case": "lef_min/null",
+      "fields": {
+        "lef_min": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_min/negative",
+      "fields": {
+        "lef_min": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_min/nan",
+      "fields": {
+        "lef_min": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_min/infinity",
+      "fields": {
+        "lef_min": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_min/wrong-object",
+      "fields": {
+        "lef_min": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_min/wrong-array",
+      "fields": {
+        "lef_min": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_min/boolean",
+      "fields": {
+        "lef_min": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_mode/null",
+      "fields": {
+        "lef_mode": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_mode/negative",
+      "fields": {
+        "lef_mode": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_mode/nan",
+      "fields": {
+        "lef_mode": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_mode/infinity",
+      "fields": {
+        "lef_mode": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_mode/wrong-object",
+      "fields": {
+        "lef_mode": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_mode/wrong-array",
+      "fields": {
+        "lef_mode": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_mode/boolean",
+      "fields": {
+        "lef_mode": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_max/null",
+      "fields": {
+        "lef_max": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_max/negative",
+      "fields": {
+        "lef_max": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_max/nan",
+      "fields": {
+        "lef_max": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_max/infinity",
+      "fields": {
+        "lef_max": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_max/wrong-object",
+      "fields": {
+        "lef_max": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_max/wrong-array",
+      "fields": {
+        "lef_max": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_max/boolean",
+      "fields": {
+        "lef_max": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_gamma/null",
+      "fields": {
+        "lef_gamma": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_gamma/negative",
+      "fields": {
+        "lef_gamma": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_gamma/nan",
+      "fields": {
+        "lef_gamma": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_gamma/infinity",
+      "fields": {
+        "lef_gamma": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_gamma/wrong-object",
+      "fields": {
+        "lef_gamma": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_gamma/wrong-array",
+      "fields": {
+        "lef_gamma": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "lef_gamma/boolean",
+      "fields": {
+        "lef_gamma": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_min/null",
+      "fields": {
+        "plm_min": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_min/negative",
+      "fields": {
+        "plm_min": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_min/nan",
+      "fields": {
+        "plm_min": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_min/infinity",
+      "fields": {
+        "plm_min": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_min/wrong-object",
+      "fields": {
+        "plm_min": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_min/wrong-array",
+      "fields": {
+        "plm_min": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_min/boolean",
+      "fields": {
+        "plm_min": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_mode/null",
+      "fields": {
+        "plm_mode": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_mode/negative",
+      "fields": {
+        "plm_mode": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_mode/nan",
+      "fields": {
+        "plm_mode": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_mode/infinity",
+      "fields": {
+        "plm_mode": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_mode/wrong-object",
+      "fields": {
+        "plm_mode": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_mode/wrong-array",
+      "fields": {
+        "plm_mode": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_mode/boolean",
+      "fields": {
+        "plm_mode": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_max/null",
+      "fields": {
+        "plm_max": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_max/negative",
+      "fields": {
+        "plm_max": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_max/nan",
+      "fields": {
+        "plm_max": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_max/infinity",
+      "fields": {
+        "plm_max": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_max/wrong-object",
+      "fields": {
+        "plm_max": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_max/wrong-array",
+      "fields": {
+        "plm_max": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_max/boolean",
+      "fields": {
+        "plm_max": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_gamma/null",
+      "fields": {
+        "plm_gamma": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_gamma/negative",
+      "fields": {
+        "plm_gamma": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_gamma/nan",
+      "fields": {
+        "plm_gamma": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_gamma/infinity",
+      "fields": {
+        "plm_gamma": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_gamma/wrong-object",
+      "fields": {
+        "plm_gamma": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_gamma/wrong-array",
+      "fields": {
+        "plm_gamma": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "plm_gamma/boolean",
+      "fields": {
+        "plm_gamma": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slef_prob/null",
+      "fields": {
+        "slef_prob": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slef_prob/negative",
+      "fields": {
+        "slef_prob": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slef_prob/nan",
+      "fields": {
+        "slef_prob": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slef_prob/infinity",
+      "fields": {
+        "slef_prob": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slef_prob/wrong-object",
+      "fields": {
+        "slef_prob": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slef_prob/wrong-array",
+      "fields": {
+        "slef_prob": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slef_prob/boolean",
+      "fields": {
+        "slef_prob": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_min/null",
+      "fields": {
+        "slm_min": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_min/negative",
+      "fields": {
+        "slm_min": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_min/nan",
+      "fields": {
+        "slm_min": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_min/infinity",
+      "fields": {
+        "slm_min": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_min/wrong-object",
+      "fields": {
+        "slm_min": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_min/wrong-array",
+      "fields": {
+        "slm_min": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_min/boolean",
+      "fields": {
+        "slm_min": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_mode/null",
+      "fields": {
+        "slm_mode": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_mode/negative",
+      "fields": {
+        "slm_mode": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_mode/nan",
+      "fields": {
+        "slm_mode": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_mode/infinity",
+      "fields": {
+        "slm_mode": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_mode/wrong-object",
+      "fields": {
+        "slm_mode": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_mode/wrong-array",
+      "fields": {
+        "slm_mode": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_mode/boolean",
+      "fields": {
+        "slm_mode": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_max/null",
+      "fields": {
+        "slm_max": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_max/negative",
+      "fields": {
+        "slm_max": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_max/nan",
+      "fields": {
+        "slm_max": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_max/infinity",
+      "fields": {
+        "slm_max": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_max/wrong-object",
+      "fields": {
+        "slm_max": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_max/wrong-array",
+      "fields": {
+        "slm_max": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "slm_max/boolean",
+      "fields": {
+        "slm_max": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "sec_materiality_threshold/null",
+      "fields": {
+        "sec_materiality_threshold": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "sec_materiality_threshold/negative",
+      "fields": {
+        "sec_materiality_threshold": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "sec_materiality_threshold/nan",
+      "fields": {
+        "sec_materiality_threshold": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "sec_materiality_threshold/infinity",
+      "fields": {
+        "sec_materiality_threshold": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "sec_materiality_threshold/wrong-object",
+      "fields": {
+        "sec_materiality_threshold": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "sec_materiality_threshold/wrong-array",
+      "fields": {
+        "sec_materiality_threshold": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "sec_materiality_threshold/boolean",
+      "fields": {
+        "sec_materiality_threshold": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations/null",
+      "fields": {
+        "iterations": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations/negative",
+      "fields": {
+        "iterations": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations/nan",
+      "fields": {
+        "iterations": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations/infinity",
+      "fields": {
+        "iterations": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations/wrong-object",
+      "fields": {
+        "iterations": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations/wrong-array",
+      "fields": {
+        "iterations": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations/boolean",
+      "fields": {
+        "iterations": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "random_seed/null",
+      "fields": {
+        "random_seed": "None"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "random_seed/negative",
+      "fields": {
+        "random_seed": "-1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "random_seed/nan",
+      "fields": {
+        "random_seed": "nan"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "random_seed/infinity",
+      "fields": {
+        "random_seed": "inf"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "random_seed/wrong-object",
+      "fields": {
+        "random_seed": "{}"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "random_seed/wrong-array",
+      "fields": {
+        "random_seed": "[]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "random_seed/boolean",
+      "fields": {
+        "random_seed": "True"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations-too-small",
+      "fields": {
+        "iterations": "999"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations-too-large",
+      "fields": {
+        "iterations": "250001"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "iterations-fractional",
+      "fields": {
+        "iterations": "1000.5"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "seed-too-large",
+      "fields": {
+        "random_seed": "4294967296"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "probability-too-large",
+      "fields": {
+        "slef_prob": "1.01"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "mode-below-min",
+      "fields": {
+        "lef_mode": "0.5"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "mode-above-max",
+      "fields": {
+        "lef_mode": "2"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "shape-too-small",
+      "fields": {
+        "lef_gamma": "0.99"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "shape-too-large",
+      "fields": {
+        "plm_gamma": "8.01"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "rate-too-large",
+      "fields": {
+        "lef_min": "101",
+        "lef_mode": "101",
+        "lef_max": "101"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "event-budget",
+      "fields": {
+        "lef_min": "100",
+        "lef_mode": "100",
+        "lef_max": "100",
+        "iterations": "250000"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "severity-cap",
+      "fields": {
+        "plm_max": "1000000000001.0"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "infeasible-lognormal",
+      "fields": {
+        "slm_min": "0",
+        "slm_mode": "0",
+        "slm_max": "1"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "unsupported-sigma",
+      "fields": {
+        "slm_min": "0",
+        "slm_mode": "1",
+        "slm_max": "1000000000000.0"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "seed-string",
+      "fields": {
+        "random_seed": "'1'"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "fraction-string",
+      "fields": {
+        "slef_prob": "'0.5'"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "seed-zero",
+      "fields": {
+        "random_seed": "0"
+      },
+      "omitted": [],
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS"
+    },
+    {
+      "case": "seed-max",
+      "fields": {
+        "random_seed": "4294967295"
+      },
+      "omitted": [],
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS"
+    },
+    {
+      "case": "zero-frequency",
+      "fields": {
+        "lef_min": "0",
+        "lef_mode": "0",
+        "lef_max": "0"
+      },
+      "omitted": [],
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS"
+    },
+    {
+      "case": "zero-secondary",
+      "fields": {
+        "slm_min": "0",
+        "slm_mode": "0",
+        "slm_max": "0"
+      },
+      "omitted": [],
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS"
+    },
+    {
+      "case": "scientific-notation-severity",
+      "fields": {
+        "plm_min": "1000.0"
+      },
+      "omitted": [],
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS"
+    },
+    {
+      "case": "small-positive",
+      "fields": {
+        "plm_min": "1e-12"
+      },
+      "omitted": [],
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS"
+    },
+    {
+      "case": "control/annual_cost/-1",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': -1, 'lef_reduction': 0.1, 'plm_reduction': 0.1, 'slm_reduction': 0.1}]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "control/annual_cost/1000000000001.0",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': 1000000000001.0, 'lef_reduction': 0.1, 'plm_reduction': 0.1, 'slm_reduction': 0.1}]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "control/annual_cost/1",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': '1', 'lef_reduction': 0.1, 'plm_reduction': 0.1, 'slm_reduction': 0.1}]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "control/lef_reduction/-0.1",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': 1, 'lef_reduction': -0.1, 'plm_reduction': 0.1, 'slm_reduction': 0.1}]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "control/plm_reduction/0.96",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': 1, 'lef_reduction': 0.1, 'plm_reduction': 0.96, 'slm_reduction': 0.1}]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "control/slm_reduction/nan",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': 1, 'lef_reduction': 0.1, 'plm_reduction': 0.1, 'slm_reduction': nan}]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "control/enabled/true",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': 1, 'lef_reduction': 0.1, 'plm_reduction': 0.1, 'slm_reduction': 0.1, 'enabled': 'true'}]"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "duplicate-controls",
+      "fields": {
+        "controls": "[{'id': 'audit', 'annual_cost': 1, 'lef_reduction': 0.1, 'plm_reduction': 0.1, 'slm_reduction': 0.1}, {'id': 'audit', 'a"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "too-many-controls",
+      "fields": {
+        "controls": "[{'id': '0', 'annual_cost': 1, 'lef_reduction': 0.1, 'plm_reduction': 0.1, 'slm_reduction': 0.1}, {'id': '1', 'annual_co"
+      },
+      "omitted": [],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/lef_min",
+      "fields": {},
+      "omitted": [
+        "lef_min"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/lef_mode",
+      "fields": {},
+      "omitted": [
+        "lef_mode"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/lef_max",
+      "fields": {},
+      "omitted": [
+        "lef_max"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/plm_min",
+      "fields": {},
+      "omitted": [
+        "plm_min"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/plm_mode",
+      "fields": {},
+      "omitted": [
+        "plm_mode"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/plm_max",
+      "fields": {},
+      "omitted": [
+        "plm_max"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/slm_min",
+      "fields": {},
+      "omitted": [
+        "slm_min"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/slm_mode",
+      "fields": {},
+      "omitted": [
+        "slm_mode"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "missing/slm_max",
+      "fields": {},
+      "omitted": [
+        "slm_max"
+      ],
+      "expectedStatus": 422,
+      "actualStatus": 422,
+      "status": "PASS"
+    },
+    {
+      "case": "documented-optional-defaults",
+      "fields": {},
+      "omitted": [
+        "iterations",
+        "random_seed",
+        "slef_prob",
+        "lef_gamma",
+        "plm_gamma",
+        "sec_materiality_threshold"
+      ],
+      "expectedStatus": 200,
+      "actualStatus": 200,
+      "status": "PASS"
+    }
+  ],
+  "jsonUndefined": "NOT APPLICABLE: JSON has no undefined; omission is tested.",
+  "identifiers": "Asset/threat/currency identifiers are UI-owned closed catalogs, not backend fields; API accepts a numeric scenario contract."
+}

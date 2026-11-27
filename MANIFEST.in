@@ -1,0 +1,4 @@
+include LICENSE NOTICE README.md CHANGELOG.md CONTRIBUTING.md SECURITY.md THIRD_PARTY.md CITATION.cff
+recursive-include docs *.md
+recursive-include examples *.py
+recursive-include tests *.py

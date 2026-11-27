@@ -1,0 +1,38 @@
+--- baseline-python-engine.txt
++++ backend/app/engine/fair_monte_carlo.py
+@@ -100,6 +100,18 @@
+ 
+     def run_simulation(self, lec_thresholds=None) -> Dict[str, Any]:
+         """Run annual Monte Carlo without per-incident Python loops."""
++        if lec_thresholds is not None:
++            try:
++                lec_thresholds = list(lec_thresholds)
++                valid = bool(lec_thresholds) and all(
++                    not isinstance(value, (bool, np.bool_))
++                    and isinstance(value, (int, float, np.integer, np.floating))
++                    and math.isfinite(value) and value >= 0 for value in lec_thresholds
++                )
++            except (TypeError, ValueError):
++                valid = False
++            if not valid:
++                raise ValueError("LEC thresholds must be a non-empty collection of finite non-negative numbers")
+         t_start = time.perf_counter()
+         n = self.cfg.iterations
+ 
+--- baseline-browser-engine.txt
++++ frontend/src/engine.js
+@@ -84,6 +84,14 @@
+   secMaterialityThreshold = Infinity,
+   lecThresholds = null
+ ) {
++  if (typeof secMaterialityThreshold !== 'number' || Number.isNaN(secMaterialityThreshold) || secMaterialityThreshold < 0) {
++    throw new Error('Invalid secondary loss threshold');
++  }
++  if (lecThresholds !== null) {
++    if ((!Array.isArray(lecThresholds) && !ArrayBuffer.isView(lecThresholds)) || !lecThresholds.length || !Array.from(lecThresholds).every(value => Number.isFinite(value) && value >= 0)) {
++      throw new Error('LEC thresholds must be a non-empty collection of finite non-negative numbers');
++    }
++  }
+   if (!Object.hasOwn(params, 'slefProb') || !Number.isFinite(params.slefProb) || params.slefProb < 0 || params.slefProb > 1) {
+     throw new Error('Validation error: slefProb is required and must be a finite number in [0, 1]');
+   }

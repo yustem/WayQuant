@@ -1,0 +1,72 @@
+[
+  {
+    "variant": "default",
+    "values": [
+      {
+        "text": "$2,770,208",
+        "textWidth": 98.96875,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "$10,757,368",
+        "textWidth": 108.875,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "$10,757,368",
+        "textWidth": 108.875,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "36.53%",
+        "textWidth": 59.390625,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "+0.0%",
+        "textWidth": 49.515625,
+        "boxWidth": 166.765625,
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "variant": "large",
+    "values": [
+      {
+        "text": "$14,688,160,000,000",
+        "textWidth": 146.25,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "$24,000,000,000,000",
+        "textWidth": 146.25,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "$2,325,600,000,000",
+        "textWidth": 138.5625,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "99.97%",
+        "textWidth": 59.390625,
+        "boxWidth": 166.765625,
+        "overflow": false
+      },
+      {
+        "text": "+3386316524.4%",
+        "textWidth": 138.578125,
+        "boxWidth": 166.765625,
+        "overflow": false
+      }
+    ]
+  }
+]

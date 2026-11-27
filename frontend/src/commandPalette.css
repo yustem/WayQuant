@@ -1,0 +1,47 @@
+@media screen {
+  .command-trigger-wrap { position: relative; width: 100%; }
+  .app-shell .command-trigger {
+    display: flex; align-items: center; gap: 8px; min-width: 0; width: 100%; height: 40px;
+    padding: 0 62px 0 10px; border: 1px solid #34445d; border-radius: 8px; background: #0b1320;
+    color: #a7b4c8; font-size: 12px; text-align: left;
+  }
+  .command-trigger span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .command-shortcut { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); pointer-events: none; font-size: 10px; color: #bdcbe0; white-space: nowrap; }
+  @media (max-width: 1023px) { .command-shortcut { display: none; } .app-shell .command-trigger { padding-right: 10px; } }
+  .app-shell .command-trigger:hover { background: #182438; border-color: #637e9f; color: #f1f5f9; }
+  .command-palette {
+    position: fixed; inset: 0; margin: auto; padding: 0; width: min(680px, calc(100vw - 32px));
+    max-height: calc(100dvh - 48px); overflow: hidden; border: 1px solid #3d506c; border-radius: 14px;
+    color: #e2e8f0; background: #101a2a; box-shadow: 0 24px 80px #0008;
+    font: 400 14px/1.5 Inter, system-ui, sans-serif; color-scheme: dark;
+  }
+  .command-palette[open] { display: flex; flex-direction: column; }
+  .command-palette::backdrop { background: #030812a6; }
+  .command-heading { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px 0; }
+  .command-heading h2 { margin: 0; color: #b4c3d8; font-size: 12px; font-weight: 500; }
+  .command-heading button { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 6px; color: #b4c3d8; }
+  .command-heading button:hover { color: #fff; background: #24344d; }
+  .command-input-wrap { display: flex; align-items: center; gap: 12px; padding: 12px 20px 18px; border-bottom: 1px solid #2d3c53; }
+  .command-input-wrap > svg { flex-shrink: 0; color: #91a9cc; }
+  .command-input-wrap input { min-width: 0; width: 100%; border: 0; outline: 0; background: transparent; color: #f1f5f9; font: inherit; font-size: 16px; }
+  .command-input-wrap input::placeholder { color: #8498b5; }
+  .command-input-wrap:focus-within { box-shadow: inset 0 -2px #729dd4; }
+  .command-palette button:focus-visible { outline: 2px solid #93c5fd; outline-offset: 2px; }
+  .command-results { min-height: 0; max-height: min(440px, 52dvh); overflow-y: auto; overscroll-behavior: contain; padding: 8px; }
+  .command-results h3 { padding: 12px 12px 6px; font-size: 11px; color: #9aadc9; font-weight: 600; letter-spacing: 0.03em; }
+  .command-result { display: flex; gap: 12px; align-items: center; min-height: 44px; padding: 10px 12px; border: 1px solid transparent; border-radius: 8px; cursor: pointer; }
+  .command-result > svg { flex-shrink: 0; color: #8da6cc; }
+  .command-result > svg:last-child { margin-left: auto; }
+  .command-result > div { min-width: 0; }
+  .command-result span { display: block; overflow-wrap: anywhere; }
+  .command-result small { display: block; margin-top: 3px; font-size: 11px; line-height: 1.5; color: #9eb1cc; }
+  .command-result[aria-selected="true"] { background: #203451; border-color: #425f88; }
+  .command-result[aria-disabled="true"] { opacity: 0.6; cursor: default; }
+  .command-footer { display: flex; flex-wrap: wrap; gap: 16px; padding: 12px 20px; border-top: 1px solid #2d3c53; color: #a0b3cd; font-size: 11px; }
+  .command-footer kbd { margin-right: 4px; color: #d8e3f3; }
+  .command-empty { display: grid; justify-items: center; gap: 8px; padding: 32px 20px; text-align: center; color: #b4c3d8; }
+  .command-empty small { color: #8fa5c4; }
+  .command-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .search-target-highlight { outline: 2px solid #87b6ef !important; outline-offset: 3px; }
+}
+@media print { .command-palette { display: none !important; } }

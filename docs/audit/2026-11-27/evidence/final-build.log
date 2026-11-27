@@ -1,0 +1,16 @@
+
+> wayquant-frontend@3.0.0 build
+> tsc && vite build
+
+vite v6.4.6 building for production...
+transforming...
+✓ 1509 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                              0.67 kB │ gzip:  0.42 kB
+dist/assets/simulation.worker-CBhRxtxm.js    4.54 kB
+dist/assets/index-F0-B8ED8.css              43.68 kB │ gzip:  9.16 kB
+dist/assets/index-uo2lV5i5.js              311.19 kB │ gzip: 94.39 kB
+✓ built in 3.74s
+
+STDERR:

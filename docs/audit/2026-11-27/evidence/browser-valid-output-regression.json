@@ -1,0 +1,5 @@
+{
+  "cases": 80,
+  "matched": 80,
+  "comparison": "Exact deep equality of every returned value except elapsedMs; same valid inputs and seeds, baseline vs current."
+}

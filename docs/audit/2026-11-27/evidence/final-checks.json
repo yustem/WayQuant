@@ -1,0 +1,92 @@
+[
+  {
+    "name": "python-tests",
+    "command": [
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "--junitxml=$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\docs\\audit\\2026-11-27\\evidence\\final-pytest.xml"
+    ],
+    "returncode": 0,
+    "seconds": 2.01
+  },
+  {
+    "name": "independent-math",
+    "command": [
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pytest",
+      "-q",
+      "-p",
+      "no:cacheprovider",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\docs\\audit\\2026-11-27\\scripts\\test_independent_math.py",
+      "--junitxml=$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\docs\\audit\\2026-11-27\\evidence\\final-math.xml"
+    ],
+    "returncode": 0,
+    "seconds": 3.709
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "npm.cmd",
+      "run",
+      "typecheck"
+    ],
+    "returncode": 0,
+    "seconds": 2.037
+  },
+  {
+    "name": "frontend-tests",
+    "command": [
+      "node",
+      "--test",
+      "--test-concurrency=1",
+      "--test-reporter=spec",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\audit-accessibility.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\audit-disclosures.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\audit-engine-status.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\audit-engine-validation.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\audit-failure-matrix.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\audit-reliability.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\command-palette.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\context-select.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\engine.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\header.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\layout.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\print.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\shell.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\ux.test.mjs",
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\frontend\\tests\\worker-client.test.mjs"
+    ],
+    "returncode": 0,
+    "seconds": 124.44
+  },
+  {
+    "name": "build",
+    "command": [
+      "cmd.exe",
+      "/d",
+      "/c",
+      "npm.cmd",
+      "run",
+      "build"
+    ],
+    "returncode": 0,
+    "seconds": 6.237
+  },
+  {
+    "name": "pip-check",
+    "command": [
+      "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.venv\\Scripts\\python.exe",
+      "-m",
+      "pip",
+      "check"
+    ],
+    "returncode": 0,
+    "seconds": 0.575
+  }
+]

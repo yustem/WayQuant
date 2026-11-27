@@ -1,0 +1,108 @@
+name: Verify and deploy WayQuant
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: wayquant-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: python -m pip install -e '.[api,test]' scipy==1.18.1
+      - run: python -m pytest -q
+      - name: Independent mathematical references
+        run: python -m pytest -q -p no:cacheprovider docs/audit/2026-11-27/scripts/test_independent_math.py
+      - run: npm ci && npm run typecheck && npm run build
+        working-directory: frontend
+      - name: Install isolated browser tools
+        run: |
+          npm install --prefix .verification-ci --no-save --ignore-scripts playwright@1.62.1
+          ./.verification-ci/node_modules/.bin/playwright install --with-deps chromium
+      - name: API and complete frontend/browser regression suite
+        env:
+          NODE_OPTIONS: --dns-result-order=ipv4first
+          WAYQUANT_CODE_REVISION: ${{ github.sha }}
+          WAYQUANT_UX_URL: http://127.0.0.1:4173
+          WAYQUANT_PRINT_URL: http://127.0.0.1:4173
+        run: |
+          python -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --limit-concurrency 8 > /tmp/wayquant-api.log 2>&1 &
+          npm --prefix frontend run dev -- --host 127.0.0.1 --port 4173 --strictPort > /tmp/wayquant-ui.log 2>&1 &
+          python - <<'PY'
+          import time, urllib.request
+          for url in ['http://127.0.0.1:8000/api/v1/health', 'http://127.0.0.1:4173']:
+              for attempt in range(40):
+                  try:
+                      urllib.request.urlopen(url, timeout=2)
+                      break
+                  except Exception:
+                      time.sleep(1)
+              else:
+                  raise RuntimeError(f'Not ready: {url}')
+          PY
+          export WAYQUANT_PLAYWRIGHT_MODULE="$GITHUB_WORKSPACE/.verification-ci/node_modules/playwright/index.mjs"
+          node --test --test-concurrency=1 frontend/tests/*.test.mjs
+      - run: python -m build
+      - name: Installed wheel smoke test outside source tree
+        run: |
+          python -m pip install --force-reinstall --no-deps dist/*.whl
+          cd /tmp
+          python -c 'from wayquant import OpenFairInput, FairMonteCarloEngine; assert FairMonteCarloEngine(OpenFairInput(0,0,0)).run_simulation()["ale"] == 0'
+  static:
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - run: npm ci
+        working-directory: frontend
+      - name: Build browser-only deployment
+        env:
+          VITE_EXECUTION_MODE: browser
+          VITE_BASE_PATH: /WayQuant/
+          VITE_CODE_REVISION: ${{ github.sha }}
+        run: npm --prefix frontend run build
+      - name: Verify actual production bundle under repository subpath
+        run: |
+          npm install --prefix .verification-ci --no-save --ignore-scripts playwright@1.62.1
+          ./.verification-ci/node_modules/.bin/playwright install --with-deps chromium
+          npm --prefix frontend run preview -- --host 127.0.0.1 --port 4179 --strictPort > /tmp/wayquant-static.log 2>&1 &
+          for attempt in $(seq 1 30); do curl --fail --silent http://127.0.0.1:4179/WayQuant/ && break || sleep 1; done
+          WAYQUANT_PLAYWRIGHT_MODULE="$GITHUB_WORKSPACE/.verification-ci/node_modules/playwright/index.mjs" \
+          WAYQUANT_STATIC_URL=http://127.0.0.1:4179/WayQuant/ \
+          node --test frontend/tests/static-deployment.test.mjs
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: frontend/dist
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: static
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+      - name: Deploy verified bundle
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

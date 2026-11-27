@@ -1,0 +1,24 @@
+{
+  "experiments": [
+    {
+      "mutation": "drop all secondary loss from annual total",
+      "expectedALE": 150,
+      "observedMutantALE": 99.57,
+      "sixSEBound": 4.024922359499621,
+      "killed": true
+    },
+    {
+      "mutation": "replace every browser quantile with zero",
+      "reference": "Poisson(1) severity 100 has positive P95=300 and P99=400",
+      "observed": {
+        "var95": 0,
+        "var99": 0
+      },
+      "killed": true
+    }
+  ],
+  "productionFilesUnchanged": {
+    "backend\\app\\engine\\fair_monte_carlo.py": "df3343721850fa59a2e5175b09d57daade017e18fe9d9cdbc62a6ef61ce516a1",
+    "frontend\\src\\engine.js": "e98e842f7a32904f4d5c5fe36bf35992d4164bf3a126f184bc70a7fd6ce276f4"
+  }
+}

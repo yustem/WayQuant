@@ -1,0 +1,42 @@
+[
+  {
+    "pdf": "final-default-EN.pdf",
+    "pages": 2,
+    "textLengths": [
+      1124,
+      1134
+    ],
+    "status": "PASS",
+    "visualInspection": "Pending explicit image review; text/page checks alone do not establish visual quality."
+  },
+  {
+    "pdf": "final-default-RU.pdf",
+    "pages": 2,
+    "textLengths": [
+      1117,
+      1134
+    ],
+    "status": "PASS",
+    "visualInspection": "Pending explicit image review; text/page checks alone do not establish visual quality."
+  },
+  {
+    "pdf": "final-large-EN.pdf",
+    "pages": 2,
+    "textLengths": [
+      1169,
+      1206
+    ],
+    "status": "PASS",
+    "visualInspection": "Pending explicit image review; text/page checks alone do not establish visual quality."
+  },
+  {
+    "pdf": "final-large-RU.pdf",
+    "pages": 2,
+    "textLengths": [
+      1162,
+      1206
+    ],
+    "status": "PASS",
+    "visualInspection": "Pending explicit image review; text/page checks alone do not establish visual quality."
+  }
+]

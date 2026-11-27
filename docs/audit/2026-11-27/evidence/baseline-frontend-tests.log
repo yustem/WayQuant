@@ -1,0 +1,26 @@
+✔ global search navigates real targets in EN/RU without silently changing scenarios (14949.8526ms)
+✔ one toolbar simulation action retains navigation, rerun, iteration, busy and disabled behavior (4910.267ms)
+✔ four shared fixed-height context dropdowns retain values, labels and keyboard behavior (6925.4226ms)
+✔ Mulberry32 matches a BigInt state oracle for 12 million draws and repeats by seed (444.355ms)
+✔ slefProb must be present as a finite probability (0.79ms)
+✔ slefProb=0 disables nonzero secondary severity (7.3128ms)
+✔ slefProb=1 applies constant secondary severity to every incident (44.5369ms)
+✔ zero loss, frequency, quantile ties and reproducibility (72.2827ms)
+✔ shifted lognormal analytic expectation and P95 (60.3448ms)
+✔ exact Poisson at large intensity and resource validation (53.2627ms)
+✔ export refuses stale/pending results and retains immutable inputs (0.271ms)
+✔ fixed header contains the original reset/execute actions and compact context without overflow (3621.1304ms)
+✔ responsive screens, visible input labels and separated FAIR thresholds/results (5167.1261ms)
+✔ Executive Report prints exactly two A4 pages with disclaimer and long context (4375.2211ms)
+✔ context dropdown keyboard/pointer semantics, desktop scroll isolation and mobile flow (10635.2093ms)
+✔ stable status, committed sliders, latest result and localized methodology (7812.8675ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59693.2824
+
+STDERR:

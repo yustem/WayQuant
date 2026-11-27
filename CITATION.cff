@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use WayQuant, cite this software and the exact version used."
+title: "WayQuant"
+version: "3.0.0"
+type: software
+license: Apache-2.0
+authors:
+  - family-names: Yustem
+date-released: '2026-11-27'
+repository-code: 'https://github.com/yustem/WayQuant'
+url: 'https://github.com/yustem/WayQuant'

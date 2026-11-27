@@ -1,0 +1,218 @@
+# File: backend/app/engine/fair_monte_carlo.py
+import time
+from dataclasses import dataclass
+from typing import Dict, Any
+import numpy as np
+import math
+
+MAX_EVENTS = 2_000_000
+MAX_RATE = 100.0
+MODEL_VERSION = "3.0.0"
+
+def lognormal_params(low, mode, p95):
+    """Shifted lognormal: hard floor, exact mode, upper 95th percentile."""
+    if low == mode == p95:
+        return None
+    if not 0 <= low < mode < p95:
+        raise ValueError("SLM requires floor < mode < P95, or three equal values")
+    z = 1.6448536269514722
+    sigma = 2 * (math.log(p95-low)-math.log(mode-low)) / (math.sqrt(z*z + 4*(math.log(p95-low)-math.log(mode-low))) + z)
+    if sigma > 2.5:
+        raise ValueError("SLM log-space sigma exceeds supported limit 2.5")
+    return math.log(mode-low) + sigma*sigma, sigma
+
+
+@dataclass(frozen=True)
+class OpenFairInput:
+    """Validated input contract for the simplified FAIR-inspired model."""
+    lef_min: float
+    lef_mode: float
+    lef_max: float
+    lef_gamma: float = 4.0
+
+    plm_min: float = 100_000.0
+    plm_mode: float = 500_000.0
+    plm_max: float = 2_000_000.0
+    plm_gamma: float = 4.0
+
+    slef_prob: float = 0.65
+    slm_min: float = 200_000.0
+    slm_mode: float = 900_000.0
+    slm_max: float = 8_000_000.0
+
+    sec_materiality_threshold: float = 2_500_000.0
+    iterations: int = 50_000
+    random_seed: int = 42001
+
+    def __post_init__(self):
+        for name, value in vars(self).items():
+            if not isinstance(value, (int, float)) or isinstance(value, bool) or not math.isfinite(value) or value < 0:
+                raise ValueError(f"{name} must be finite and non-negative")
+        if not isinstance(self.iterations, int) or not 1000 <= self.iterations <= 250000:
+            raise ValueError("iterations must be an integer in [1000, 250000]")
+        if not isinstance(self.random_seed, int) or self.random_seed > 4294967295:
+            raise ValueError("random_seed must be an integer in [0, 4294967295]")
+        for prefix in ("lef", "plm", "slm"):
+            a,m,b = (getattr(self, prefix+suffix) for suffix in ("_min", "_mode", "_max"))
+            if not a <= m <= b or b > (MAX_RATE if prefix == "lef" else 1e12):
+                raise ValueError(f"Invalid {prefix} estimates or supported range exceeded")
+        if not 1 <= self.lef_gamma <= 8 or not 1 <= self.plm_gamma <= 8 or self.slef_prob > 1:
+            raise ValueError("Invalid shape or secondary probability")
+        if self.lef_max*self.iterations > MAX_EVENTS:
+            raise ValueError("Simulation exceeds event budget: iterations * lef_max > 2000000")
+        lognormal_params(self.slm_min, self.slm_mode, self.slm_max)
+
+
+class FairMonteCarloEngine:
+    """Vectorized annual mixed-Poisson losses with PERT and shifted Lognormal severity."""
+
+    def __init__(self, config: OpenFairInput):
+        self.cfg = config
+        self.rng = np.random.default_rng(seed=config.random_seed)
+
+    def _sample_beta_pert(
+        self, low: float, mode: float, high: float, gamma: float, size: int
+    ) -> np.ndarray:
+        """Sample the modified Beta-PERT distribution."""
+        if high <= low or size == 0:
+            return np.full(size, low, dtype=np.float64)
+
+        mode_clamped = np.clip(mode, low, high)
+        span = high - low
+        alpha = 1.0 + gamma * ((mode_clamped - low) / span)
+        beta = 1.0 + gamma * ((high - mode_clamped) / span)
+
+        u = self.rng.beta(alpha, beta, size=size)
+        return low + u * span
+
+    def _sample_lognormal_tail(
+        self, low: float, mode: float, high: float, size: int
+    ) -> np.ndarray:
+        """Sample shifted Lognormal floor/mode/P95 severity without clipping."""
+        if size == 0:
+            return np.empty(0, dtype=np.float64)
+
+        params = lognormal_params(low, mode, high)
+        if params is None:
+            return np.full(size, low, dtype=np.float64)
+        mu, sigma = params
+        return low + self.rng.lognormal(mu, sigma, size=size)
+
+    def run_simulation(self, lec_thresholds=None) -> Dict[str, Any]:
+        """Run annual Monte Carlo without per-incident Python loops."""
+        if lec_thresholds is not None:
+            try:
+                lec_thresholds = list(lec_thresholds)
+                valid = bool(lec_thresholds) and all(
+                    not isinstance(value, (bool, np.bool_))
+                    and isinstance(value, (int, float, np.integer, np.floating))
+                    and math.isfinite(value) and value >= 0 for value in lec_thresholds
+                )
+            except (TypeError, ValueError):
+                valid = False
+            if not valid:
+                raise ValueError("LEC thresholds must be a non-empty collection of finite non-negative numbers")
+        t_start = time.perf_counter()
+        n = self.cfg.iterations
+
+        # Sample annual rates and Poisson counts.
+        annual_rates = self._sample_beta_pert(
+            self.cfg.lef_min, self.cfg.lef_mode, self.cfg.lef_max, self.cfg.lef_gamma, size=n
+        )
+        event_counts = self.rng.poisson(lam=annual_rates)
+        total_events = int(np.sum(event_counts))
+
+        if total_events > MAX_EVENTS:
+            raise ValueError("Sampled event count exceeds memory budget")
+
+        if total_events == 0:
+            zero_arr = np.zeros(n, dtype=np.float64)
+            return self._compile_metrics(zero_arr, zero_arr, zero_arr, t_start, lec_thresholds)
+
+        # Generate all incident severities in a bounded flat allocation.
+        event_primary = self._sample_beta_pert(
+            self.cfg.plm_min, self.cfg.plm_mode, self.cfg.plm_max, self.cfg.plm_gamma, size=total_events
+        )
+
+        # Independent Bernoulli secondary-loss triggers.
+        secondary_triggers = self.rng.random(size=total_events) < self.cfg.slef_prob
+        num_secondary = int(np.sum(secondary_triggers))
+        event_secondary = np.zeros(total_events, dtype=np.float64)
+        if num_secondary > 0:
+            event_secondary[secondary_triggers] = self._sample_lognormal_tail(
+                self.cfg.slm_min, self.cfg.slm_mode, self.cfg.slm_max, size=num_secondary
+            )
+
+        # Aggregate incident severities into annual losses.
+        year_indices = np.repeat(np.arange(n), event_counts)
+        annual_primary = np.zeros(n, dtype=np.float64)
+        annual_secondary = np.zeros(n, dtype=np.float64)
+
+        np.add.at(annual_primary, year_indices, event_primary)
+        np.add.at(annual_secondary, year_indices, event_secondary)
+        annual_total = annual_primary + annual_secondary
+
+        return self._compile_metrics(annual_total, annual_primary, annual_secondary, t_start, lec_thresholds)
+
+    def _compile_metrics(
+        self, total: np.ndarray, primary: np.ndarray, secondary: np.ndarray, elapsed_sec: float, lec_thresholds=None
+    ) -> Dict[str, Any]:
+        sorted_total = np.sort(total)
+        n = len(sorted_total)
+
+        ale = float(np.mean(sorted_total))
+        var_95 = float(np.percentile(sorted_total, 95.0))
+        var_99 = float(np.percentile(sorted_total, 99.0))
+        cvar_99 = float(np.mean(sorted_total[int(0.99 * n):]))
+        zero_prob = float(np.mean(sorted_total == 0.0) * 100.0)
+
+        # Empirical strict exceedance curve.
+        thresholds = np.linspace(0, max(var_99 * 1.25, 1.0), 80) if lec_thresholds is None else lec_thresholds
+        exceed_probs = [(float(t), float(np.mean(sorted_total > t) * 100.0)) for t in thresholds]
+
+        # Histogram of non-zero annual losses, normalized over non-zero years.
+        nonzero_losses = sorted_total[sorted_total > 0.0]
+        histogram_max = float(nonzero_losses[-1]) if len(nonzero_losses) else 1.0
+        bin_edges = np.linspace(0.0, histogram_max, 41)
+        bin_counts, _ = np.histogram(nonzero_losses, bins=bin_edges)
+        nonzero_count = len(nonzero_losses)
+        histogram_bins = [
+            {
+                "bin_start": float(bin_edges[i]),
+                "bin_end": float(bin_edges[i + 1]),
+                "bin_mid": float((bin_edges[i] + bin_edges[i + 1]) / 2.0),
+                "count": int(bin_counts[i]),
+                "density_pct": (
+                    float(bin_counts[i] / nonzero_count * 100.0) if nonzero_count else 0.0
+                ),
+            }
+            for i in range(40)
+        ]
+
+        percentile_levels = [10, 25, 50, 75, 90, 95, 99, 99.5]
+        percentiles = [
+            {
+                "percentile": level,
+                "total": float(np.percentile(total, level)),
+                "primary": float(np.percentile(primary, level)),
+                "secondary": float(np.percentile(secondary, level)),
+                "exceed_prob": float(np.mean(total > np.percentile(total, level))*100),
+            }
+            for level in percentile_levels
+        ]
+
+        return {
+            "iterations": n,
+            "compute_time_ms": round((time.perf_counter() - elapsed_sec) * 1000, 2),
+            "ale": round(ale, 2),
+            "cyber_var_95": round(var_95, 2),
+            "cyber_var_99": round(var_99, 2),
+            "tail_cvar_99": round(cvar_99, 2),
+            "zero_loss_prob_pct": round(zero_prob, 2),
+            "lec_curve": [{"loss": x, "prob": p} for x, p in exceed_probs],
+            "histogram_bins": histogram_bins,
+            "percentiles": percentiles,
+            "sec_materiality_exceed_prob": float(
+                np.mean(total > self.cfg.sec_materiality_threshold) * 100.0
+            ),
+        }

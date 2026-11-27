@@ -1,0 +1,41 @@
+# Python caches and packaging output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+*.egg-info/
+
+# Installed frontend dependencies and tool caches
+node_modules/
+.vite/
+*.tsbuildinfo
+
+# Local environments, credentials, and verification artifacts
+.venv/
+venv/
+.verification-*/
+.env
+.env.*
+!.env.example
+
+# Local backup archives (do not hide intentionally versioned ZIP datasets)
+/recovery-*.zip
+/wayquant.zip
+/wayquant-local-archive/
+
+# Generated report QA deliverables and local/editor metadata
+/output/
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.log
+!docs/audit/**/evidence/*.log
+!docs/release/**/evidence/*.log

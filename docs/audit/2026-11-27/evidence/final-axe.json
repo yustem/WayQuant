@@ -1,0 +1,92 @@
+[
+  {
+    "lang": "EN",
+    "module": 0,
+    "violations": [],
+    "passes": 26,
+    "incomplete": []
+  },
+  {
+    "lang": "EN",
+    "module": 1,
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "lang": "EN",
+    "module": 2,
+    "violations": [],
+    "passes": 27,
+    "incomplete": []
+  },
+  {
+    "lang": "EN",
+    "module": 3,
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 6
+      }
+    ]
+  },
+  {
+    "lang": "EN",
+    "module": 4,
+    "violations": [],
+    "passes": 24,
+    "incomplete": []
+  },
+  {
+    "lang": "RU",
+    "module": 0,
+    "violations": [],
+    "passes": 26,
+    "incomplete": []
+  },
+  {
+    "lang": "RU",
+    "module": 1,
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 1
+      }
+    ]
+  },
+  {
+    "lang": "RU",
+    "module": 2,
+    "violations": [],
+    "passes": 27,
+    "incomplete": []
+  },
+  {
+    "lang": "RU",
+    "module": 3,
+    "violations": [],
+    "passes": 27,
+    "incomplete": [
+      {
+        "id": "color-contrast",
+        "nodes": 5
+      }
+    ]
+  },
+  {
+    "lang": "RU",
+    "module": 4,
+    "violations": [],
+    "passes": 24,
+    "incomplete": []
+  }
+]

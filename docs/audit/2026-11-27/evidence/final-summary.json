@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "tests": {
+    "tests": 186,
+    "passed": 186,
+    "failed": 0,
+    "skipped": 0
+  },
+  "suites": [
+    {
+      "evidence": "final-pytest.xml",
+      "tests": 36,
+      "passed": 36,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "evidence": "final-math.xml",
+      "tests": 91,
+      "passed": 91,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "evidence": "final-frontend-tests.log",
+      "tests": 59,
+      "passed": 59,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "validationCases": 146,
+  "browserLayouts": 60,
+  "axeScans": 10,
+  "axeViolations": 0,
+  "actualPdfExports": 4,
+  "statisticalRuns": 160
+}

@@ -1,0 +1,10 @@
+{
+  "title": "WayQuant",
+  "description": "Free cyber risk quantification framework for transparent, reproducible financial risk modeling and analytical decision support.",
+  "upload_type": "software",
+  "creators": [{"name": "Yustem"}],
+  "license": "Apache-2.0",
+  "version": "3.0.0",
+  "keywords": ["cyber risk", "Open FAIR", "Monte Carlo", "risk quantification"],
+  "related_identifiers": [{"identifier": "https://github.com/yustem/WayQuant", "relation": "isSupplementTo", "scheme": "url"}]
+}

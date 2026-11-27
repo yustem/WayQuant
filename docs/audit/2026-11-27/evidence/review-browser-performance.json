@@ -1,0 +1,43 @@
+{
+  "initialReadyMs": 1147,
+  "repeatedWorkerRunWallMs": [
+    528,
+    502,
+    508,
+    514,
+    499,
+    508,
+    530,
+    502,
+    502,
+    506,
+    508,
+    506
+  ],
+  "workerLifecycle": {
+    "created": 13,
+    "terminated": 13
+  },
+  "chromiumMetrics": [
+    {
+      "name": "Documents",
+      "value": 12
+    },
+    {
+      "name": "Nodes",
+      "value": 7622
+    },
+    {
+      "name": "TaskDuration",
+      "value": 0.000011
+    },
+    {
+      "name": "JSHeapUsedSize",
+      "value": 40818740
+    },
+    {
+      "name": "JSHeapTotalSize",
+      "value": 108228608
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "initialReadyMs": 1102,
+  "repeatedWorkerRunWallMs": [
+    512,
+    505,
+    508,
+    505,
+    504,
+    505,
+    504,
+    501,
+    529,
+    506,
+    508,
+    513
+  ],
+  "workerLifecycle": {
+    "created": 13,
+    "terminated": 13
+  },
+  "chromiumMetrics": [
+    {
+      "name": "Documents",
+      "value": 12
+    },
+    {
+      "name": "Nodes",
+      "value": 7624
+    },
+    {
+      "name": "TaskDuration",
+      "value": 0.000011
+    },
+    {
+      "name": "JSHeapUsedSize",
+      "value": 41554732
+    },
+    {
+      "name": "JSHeapTotalSize",
+      "value": 105082880
+    }
+  ],
+  "networkOrigins": [
+    "http://127.0.0.1:5173",
+    "https://fonts.googleapis.com"
+  ],
+  "pageErrors": []
+}

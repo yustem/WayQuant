@@ -1,0 +1,85 @@
+{
+  "reviewedUtc": "2026-11-27T00:19:45.157986+00:00",
+  "method": "Assistant individually inspected each rendered page through local image viewing after the final browser export. This is visual evidence, not a user or external-expert certification.",
+  "layoutStatus": "PASS",
+  "localizationStatus": "PARTIAL",
+  "notes": [
+    "Russian disclaimer renders correctly; legacy report headings/sections remain English.",
+    "Long run IDs wrap within their metadata column; no characters are clipped.",
+    "Existing print template uses a text WayQuant heading rather than a graphical logo."
+  ],
+  "reports": [
+    {
+      "pdf": "final-default-EN.pdf",
+      "sha256": "0808b8da67605f2c5e0f73c85fcab6f3bef258b5eba83f671b98e089e72cd32e",
+      "pages": [
+        {
+          "file": "reports/final-default-EN-1.png",
+          "sha256": "b68dd793b354106a63940cbdbaa6cb7d8de5fcdd065f0ac9fb837101bad09b13",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        },
+        {
+          "file": "reports/final-default-EN-2.png",
+          "sha256": "e2dfeff709450385d2172eba5d318f7dbd3917b2c8545bece418ff3e4acadd17",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        }
+      ]
+    },
+    {
+      "pdf": "final-default-RU.pdf",
+      "sha256": "7c729950bdcf414c5b90927343ad1ad8508e92599fb47bbd5f33837724595295",
+      "pages": [
+        {
+          "file": "reports/final-default-RU-1.png",
+          "sha256": "ab07dfbce9aa6bf951de33b5078be19378a696323c6c29fc5582e1f11e06ce8d",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        },
+        {
+          "file": "reports/final-default-RU-2.png",
+          "sha256": "e2dfeff709450385d2172eba5d318f7dbd3917b2c8545bece418ff3e4acadd17",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        }
+      ]
+    },
+    {
+      "pdf": "final-large-EN.pdf",
+      "sha256": "0059219c9ec5136cd2e003d4990e61f4976c21693e81eb8f71741eb5398af5ad",
+      "pages": [
+        {
+          "file": "reports/final-large-EN-1.png",
+          "sha256": "017a24670f6856488b67832ed57e1d8a4a2e75b465a5c71fed1b329b7f6bd83f",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        },
+        {
+          "file": "reports/final-large-EN-2.png",
+          "sha256": "b91fe96229bae86ac0226539952606bbd14e2fc5de49d59c6786c8b5927a00bb",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        }
+      ]
+    },
+    {
+      "pdf": "final-large-RU.pdf",
+      "sha256": "c7b2f54a06db9fd0ca8f2b05adab69db927cd7b302c8877c36f957a07146a2f5",
+      "pages": [
+        {
+          "file": "reports/final-large-RU-1.png",
+          "sha256": "0afd1b3572b68e705b8207cd136671ff26beb35f04d2f438870e6fd21bd704a0",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        },
+        {
+          "file": "reports/final-large-RU-2.png",
+          "sha256": "b91fe96229bae86ac0226539952606bbd14e2fc5de49d59c6786c8b5927a00bb",
+          "status": "PASS",
+          "observation": "Individually viewed: chart/table/text present, monetary digits readable, no visible clipping, overlap or unintended blank page."
+        }
+      ]
+    }
+  ]
+}

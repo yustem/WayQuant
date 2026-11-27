@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "wheel": "wayquant-3.0.0-py3-none-any.whl",
+  "isolatedTargetImport": {
+    "module": "$LOCAL_TOOL_PATH \u0441\u0442\u043e\u043b\\wayquant\\.verification-audit\\wheel-install\\wayquant\\__init__.py",
+    "ale": 0.0,
+    "iterations": 50000,
+    "seed": 0
+  },
+  "scope": "Wheel with existing venv NumPy; not a fresh operating-system installation.",
+  "contents": [
+    "app/__init__.py",
+    "app/main.py",
+    "app/engine/__init__.py",
+    "app/engine/fair_monte_carlo.py",
+    "app/schemas/__init__.py",
+    "app/schemas/fair_models.py",
+    "wayquant/__init__.py",
+    "wayquant-3.0.0.dist-info/licenses/LICENSE",
+    "wayquant-3.0.0.dist-info/licenses/NOTICE",
+    "wayquant-3.0.0.dist-info/METADATA",
+    "wayquant-3.0.0.dist-info/WHEEL",
+    "wayquant-3.0.0.dist-info/top_level.txt",
+    "wayquant-3.0.0.dist-info/RECORD"
+  ]
+}

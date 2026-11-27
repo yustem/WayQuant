@@ -1,0 +1,1804 @@
+{
+  "i18n": {
+    "ru": {
+      "appTitle": "WayQuant",
+      "appSubtitle": "Open FAIR Cyber Risk Quantification Engine",
+      "version": "v3.0.0-ENT",
+      "sidebar": {
+        "contextHeader": "КОНТЕКСТ МОДЕЛИРОВАНИЯ",
+        "assetLabel": "Целевой актив (Asset)",
+        "threatLabel": "Вектор угрозы (Threat Vector)",
+        "iterationsLabel": "Итераций Монте-Карло",
+        "seedLabel": "Генератор (PRNG Seed)",
+        "currencyLabel": "Базовая валюта",
+        "navHeader": "РАБОЧИЕ МОДУЛИ",
+        "tabs": {
+          "input": "1. Параметры (Open FAIR)",
+          "simulation": "2. Дашборд симуляции",
+          "controls": "3. Защитные меры NIST & ROSI",
+          "export": "4. Отчет для Совета (PDF)",
+          "architecture": "5. Архитектура и Код (Python/Docker)"
+        },
+        "engineStatus": "ВЫЧИСЛИТЕЛЬНОЕ ЯДРО",
+        "statusReady": "ВЕКТОРИЗОВАНО / АКТИВНО",
+        "execTime": "Время расчета",
+        "confidenceLevel": "Квантиль",
+        "localFallback": "Бэкенд недоступен — расчет выполнен локально в браузере."
+      },
+      "assets": {
+        "payment_gw": "Core Payment Gateway (PCI-DSS Tier 1)",
+        "cloud_dwh": "Enterprise Cloud Data Lake (PII / FinData)",
+        "swift_node": "SWIFT Interbank Settlement Node",
+        "iam_dir": "Global Identity & Access Directory (AD/SSO)",
+        "scada_grid": "SCADA / Smart Grid Energy Dispatch (CISA Energy)",
+        "ehr_lake": "EHR Patient Core Lake (HIPAA / HL7 FHIR)",
+        "ach_clearing": "Federal ACH Clearing & Settlement Engine (DORA)",
+        "water_ot": "OT Municipal Water Treatment Telemetry (CISA Water)"
+      },
+      "threats": {
+        "ransomware": "Кампания ransomware с двойным вымогательством",
+        "exfiltration": "Целевая эксфильтрация данных (APT)",
+        "ddos": "Каскадный отказ сервиса (DDoS)",
+        "supply_chain": "Компрометация цепочки поставок (CI/CD Injection)",
+        "bec": "Фишинг на базе ИИ и мошенничество BEC против руководства",
+        "edge_zero_day": "Эксплуатация zero-day на граничном устройстве (VPN/Gateway)",
+        "insider": "Злоумышленный привилегированный инсайдер / саботаж",
+        "dependency_poisoning": "Отравление CI/CD-конвейера и зависимостей"
+      },
+      "inputTab": {
+        "title": "Калибровка параметров Open FAIR",
+        "subtitle": "Задайте трехточечные оценки (Min, Mode, Max) для частоты событий и масштаба ущерба. Прямые потери моделируются модифицированным распределением Beta-PERT, вторичные потери — логнормальным распределением с тяжелым хвостом.",
+        "presetBtn": "Сбросить к эталонному профилю актива",
+        "runNowBtn": "Запустить расчет (50 000 итераций)",
+        "lefSection": "Частота успешных атак (Loss Event Frequency — LEF)",
+        "lefDesc": "Количество успешных реализаций риска в год. Используется как интенсивность процесса Пуассона.",
+        "plmSection": "Прямой ущерб на инцидент (Primary Loss Magnitude — PLM)",
+        "plmDesc": "Прямые операционные затраты: простой, восстановление инфраструктуры, криминалистика (DFIR), выкуп.",
+        "slmSection": "Вторичный ущерб: нижняя граница / мода / P95",
+        "slmDesc": "Регуляторные штрафы, судебные иски, отток клиентов, репутационные потери (Логнормальное распределение).",
+        "minLabel": "Минимум (Min)",
+        "modeLabel": "Наиболее вероятное (Mode)",
+        "maxLabel": "Максимум (Max)",
+        "gammaLabel": "Параметр формы (Lambda / Kurtosis)",
+        "slefProbLabel": "Вероятность вторичного ущерба (SLEF %)",
+        "eventsPerYear": "событий / год",
+        "densityPreview": "Условная иллюстрация формы",
+        "fairTaxonomy": "Структурная декомпозиция Open FAIR",
+        "expectedSingleLoss": "Ожидаемый ущерб на 1 инцидент (SLE)",
+        "syntheticPresetNotice": "Иллюстративные синтетические сценарии; не являются эмпирически откалиброванными данными."
+      },
+      "simTab": {
+        "title": "Дашборд стохастического моделирования Монте-Карло",
+        "subtitle": "Результаты векторизованной симуляции годовых потерь. Квантиль оценки капитала под риском: 95%.",
+        "runBtn": "Run Simulation",
+        "recalculating": "Вычисление...",
+        "kpiAle": "Ожидаемые годовые потери (ALE)",
+        "kpiAleSub": "Математическое ожидание годового ущерба",
+        "kpiVar95": "Cyber VaR (95th percentile)",
+        "kpiVar95Sub": "Потери не превысят порог в 95% лет",
+        "kpiCvar99": "Экстремальный хвост (CVaR 99%)",
+        "kpiCvar99Sub": "Средний ущерб в 1% наихудших сценариев",
+        "kpiZeroProb": "Вероятность года без потерь",
+        "kpiZeroProbSub": "Доля лет с нулевым денежным ущербом",
+        "lecTitle": "Кривая превышения потерь (Loss Exceedance Curve — LEC)",
+        "lecSubtitle": "Вероятность того, что совокупный годовой ущерб превысит заданный финансовый порог P(Loss > X)",
+        "histTitle": "Плотность распределения годовых потерь (Heavy-Tail Distribution)",
+        "histSubtitle": "Гистограмма ненулевых годовых потерь с выделением зоны 95% Cyber VaR и логнормального хвоста",
+        "logScaleToggle": "Логарифмическая шкала X",
+        "riskToleranceLabel": "Порог толерантности к риску (Risk Appetite)",
+        "secMaterialityLabel": "Сценарный денежный порог (не юридическая существенность)",
+        "percentileTableTitle": "Квантильная матрица распределения годовых потерь",
+        "percentileCol": "Перцентиль",
+        "totalLossCol": "Совокупный ущерб",
+        "primaryCol": "Прямой ущерб (Beta-PERT)",
+        "secondaryCol": "Вторичный ущерб (Lognormal)",
+        "exceedProbCol": "Вероятность превышения"
+      },
+      "controlsTab": {
+        "title": "Защитные меры NIST CSF 2.0 и оптимизация ROSI (What-If анализ)",
+        "subtitle": "Активируйте защитные контролы для пересчета остаточного риска (Residual Risk), предотвращенного ущерба и рентабельности инвестиций в ИБ (Return on Security Investment).",
+        "activeControlsCount": "Активных контролов",
+        "annualSecSpend": "Годовой бюджет мер (OPEX+CAPEX)",
+        "preventedLoss": "Предотвращенный ущерб (Delta ALE)",
+        "netBenefit": "Чистая финансовая выгода (Net Benefit)",
+        "rosiMetric": "Рентабельность ИБ (ROSI)",
+        "residualVar": "Остаточный Cyber VaR (95%)",
+        "baselineLabel": "Исходный риск (Baseline)",
+        "residualLabel": "Остаточный риск (Residual)",
+        "costLabel": "Стоимость / год",
+        "lefReduction": "Снижение частоты (LEF)",
+        "plmReduction": "Снижение прямого ущерба",
+        "slmReduction": "Сжатие хвоста (SLM)",
+        "comparisonChartTitle": "Сравнение кривых превышения потерь: Baseline vs. Residual Risk",
+        "comparisonChartSub": "Визуализация смещения финансового профиля риска после внедрения выбранного портфеля защитных мер NIST"
+      },
+      "exportTab": {
+        "title": "Генератор отчета для Совета директоров (Executive Board Report)",
+        "subtitle": "Стандартизированный двухстраничный финансово-аналитический меморандум для CISO, Комитета по аудиту и Совета директоров.",
+        "printPdfBtn": "Экспортировать 2-страничный PDF (Print / Save PDF)",
+        "exportJsonBtn": "Скачать JSON-артефакт симуляции",
+        "page1Label": "СТРАНИЦА 1 ИЗ 2 — EXECUTIVE RISK SUMMARY & VaR EXPOSURE",
+        "page2Label": "СТРАНИЦА 2 ИЗ 2 — NIST CONTROL OPTIMIZATION & ROSI GOVERNANCE",
+        "confidentialBanner": "СТРОГО КОНФИДЕНЦИАЛЬНО // ДЛЯ СОВЕТА ДИРЕКТОРОВ И КОМИТЕТА ПО РИСКАМ",
+        "execSummaryTitle": "1. Резюме количественной оценки киберриска",
+        "execMethodology": "Оценка выполнена в соответствии с международным стандартом Open FAIR (ISO/IEC 27005 совместимая таксономия) методом стохастического моделирования Монте-Карло (50 000 годовых итераций).",
+        "boardRecTitle": "4. Рекомендация для инвестиционного комитета",
+        "signOffCiso": "Директор по информационной безопасности (CISO)",
+        "signOffCro": "Директор по управлению рисками (CRO)",
+        "signOffDate": "Дата верификации модели"
+      },
+      "archTab": {
+        "title": "Системная архитектура, Дизайн-система и Продакшен-код (Python / FastAPI / Docker)",
+        "subtitle": "Полный комплект исходного кода для промышленного развертывания WayQuant: структура репозитория, векторизованное ядро NumPy/SciPy, конфигурация Tailwind и Docker-контейнеризация.",
+        "copyBtn": "Копировать код",
+        "copiedBtn": "Скопировано",
+        "sections": {
+          "structure": "1. Архитектура и директории",
+          "tailwind": "2. Дизайн-система (Tailwind)",
+          "pythonEngine": "3. Математическое ядро (Python NumPy)",
+          "fastapi": "4. FastAPI Сервер (REST API)",
+          "docker": "5. Docker & docker-compose.yml"
+        }
+      }
+    },
+    "en": {
+      "appTitle": "WayQuant",
+      "appSubtitle": "Open FAIR Cyber Risk Quantification Engine",
+      "version": "v3.0.0-ENT",
+      "sidebar": {
+        "contextHeader": "SIMULATION CONTEXT",
+        "assetLabel": "Target Enterprise Asset",
+        "threatLabel": "Threat Vector Profile",
+        "iterationsLabel": "Monte Carlo Iterations",
+        "seedLabel": "Deterministic PRNG Seed",
+        "currencyLabel": "Reporting Currency",
+        "navHeader": "WORKSPACE MODULES",
+        "tabs": {
+          "input": "1. Open FAIR Inputs",
+          "simulation": "2. Simulation Dashboard",
+          "controls": "3. NIST Controls & ROSI",
+          "export": "4. Executive Report (PDF)",
+          "architecture": "5. Architecture & Code"
+        },
+        "engineStatus": "COMPUTE ENGINE STATUS",
+        "statusReady": "VECTORIZED / ONLINE",
+        "execTime": "Compute Latency",
+        "confidenceLevel": "Quantile level",
+        "localFallback": "Backend unavailable — simulation completed locally in this browser."
+      },
+      "assets": {
+        "payment_gw": "Core Payment Gateway (PCI-DSS Tier 1)",
+        "cloud_dwh": "Enterprise Cloud Data Lake (PII / FinData)",
+        "swift_node": "SWIFT Interbank Settlement Node",
+        "iam_dir": "Global Identity & Access Directory (AD/SSO)",
+        "scada_grid": "SCADA / Smart Grid Energy Dispatch (CISA Energy)",
+        "ehr_lake": "EHR Patient Core Lake (HIPAA / HL7 FHIR)",
+        "ach_clearing": "Federal ACH Clearing & Settlement Engine (DORA)",
+        "water_ot": "OT Municipal Water Treatment Telemetry (CISA Water)"
+      },
+      "threats": {
+        "ransomware": "Double-Extortion Ransomware Campaign",
+        "exfiltration": "Targeted Data Exfiltration (APT)",
+        "ddos": "Cascading Service Disruption (DDoS)",
+        "supply_chain": "Supply Chain Compromise (CI/CD Injection)",
+        "bec": "AI-Driven Spear Phishing & Executive BEC Fraud",
+        "edge_zero_day": "Edge Appliance Zero-Day Exploitation (VPN/Gateway)",
+        "insider": "Malicious Privileged Insider / Sabotage",
+        "dependency_poisoning": "CI/CD Pipeline & Dependency Poisoning"
+      },
+      "inputTab": {
+        "title": "Open FAIR Parameter Calibration",
+        "subtitle": "Configure three-point estimates (Min, Mode, Max) for Loss Event Frequency and Loss Magnitude. Primary losses use Modified Beta-PERT; secondary losses follow a heavy-tailed Lognormal distribution.",
+        "presetBtn": "Reset to Asset Reference Baseline",
+        "runNowBtn": "Execute Simulation (50,000 Runs)",
+        "lefSection": "Loss Event Frequency (LEF)",
+        "lefDesc": "Annualized rate of successful threat events modeled as a Poisson arrival process.",
+        "plmSection": "Primary Loss Magnitude (PLM)",
+        "plmDesc": "Direct incident costs: operational downtime, infrastructure rebuild, DFIR retainers, extortion.",
+        "slmSection": "Secondary Loss: Floor / Mode / P95",
+        "slmDesc": "Regulatory fines, class-action litigation, customer churn, credit/reputation fallout (Lognormal tail).",
+        "minLabel": "Minimum (Min)",
+        "modeLabel": "Most Likely (Mode)",
+        "maxLabel": "Maximum (Max)",
+        "gammaLabel": "Shape Parameter (Lambda / Kurtosis)",
+        "slefProbLabel": "Secondary Loss Probability (SLEF %)",
+        "eventsPerYear": "events / year",
+        "densityPreview": "Analytical Probability Density Profile",
+        "fairTaxonomy": "Open FAIR Structural Decomposition",
+        "expectedSingleLoss": "Expected Single Loss Event (SLE)",
+        "syntheticPresetNotice": "Illustrative synthetic baseline scenario; not empirically calibrated data."
+      },
+      "simTab": {
+        "title": "Monte Carlo Stochastic Simulation Dashboard",
+        "subtitle": "Annual loss exposure; VaR95 is a loss quantile, not a confidence interval.",
+        "runBtn": "Run Simulation",
+        "recalculating": "Computing...",
+        "kpiAle": "Expected Annual Loss (ALE)",
+        "kpiAleSub": "Mean annualized financial exposure",
+        "kpiVar95": "Cyber VaR (95th percentile)",
+        "kpiVar95Sub": "95th percentile annual loss threshold",
+        "kpiCvar99": "Tail VaR / Expected Shortfall (99%)",
+        "kpiCvar99Sub": "Mean loss across worst 1% tail scenarios",
+        "kpiZeroProb": "Zero-Loss Year Probability",
+        "kpiZeroProbSub": "Share of simulated years with zero monetary loss",
+        "lecTitle": "Loss Exceedance Curve (LEC)",
+        "lecSubtitle": "Complementary cumulative probability P(Annual Loss > X) across financial thresholds",
+        "histTitle": "Heavy-Tail Loss Density Histogram",
+        "histSubtitle": "Distribution of non-zero annual loss years highlighting the 95% Cyber VaR boundary and tail zone",
+        "logScaleToggle": "Logarithmic X-Axis",
+        "riskToleranceLabel": "Board Risk Appetite Threshold",
+        "secMaterialityLabel": "Scenario loss threshold (not legal materiality)",
+        "percentileTableTitle": "Annual Loss Percentile Decomposition Matrix",
+        "percentileCol": "Percentile",
+        "totalLossCol": "Total Annual Loss",
+        "primaryCol": "Primary Loss (Beta-PERT)",
+        "secondaryCol": "Secondary Tail (Lognormal)",
+        "exceedProbCol": "Exceedance Prob."
+      },
+      "controlsTab": {
+        "title": "NIST CSF 2.0 Controls & ROSI Optimization (What-If Analysis)",
+        "subtitle": "Toggle compensating security controls to dynamically recalculate Residual Risk, Prevented Annual Loss, Net Benefit, and Return on Security Investment (ROSI).",
+        "activeControlsCount": "Active NIST Controls",
+        "annualSecSpend": "Annual Control Spend (OPEX+CAPEX)",
+        "preventedLoss": "Prevented Annual Loss (Delta ALE)",
+        "netBenefit": "Net Financial Benefit",
+        "rosiMetric": "Return on Security Investment (ROSI)",
+        "residualVar": "Residual Cyber VaR (95%)",
+        "baselineLabel": "Baseline Exposure",
+        "residualLabel": "Residual Exposure",
+        "costLabel": "Annual Cost",
+        "lefReduction": "LEF Frequency Reduction",
+        "plmReduction": "Primary Loss Reduction",
+        "slmReduction": "Secondary Tail Compression",
+        "comparisonChartTitle": "Loss Exceedance Curve Compression: Baseline vs. Residual Risk",
+        "comparisonChartSub": "Quantifiable shift in annual loss exceedance probability after deploying selected NIST controls"
+      },
+      "exportTab": {
+        "title": "Executive Board Report Generator (2-Page PDF)",
+        "subtitle": "Standardized two-page financial risk memorandum engineered for the Board of Directors, Audit Committee, and CISO.",
+        "printPdfBtn": "Generate 2-Page PDF Report (Print / Save PDF)",
+        "exportJsonBtn": "Download Simulation Audit JSON",
+        "page1Label": "PAGE 1 OF 2 — EXECUTIVE RISK SUMMARY & CYBER VaR EXPOSURE",
+        "page2Label": "PAGE 2 OF 2 — NIST CONTROL PORTFOLIO & ROSI GOVERNANCE",
+        "confidentialBanner": "STRICTLY CONFIDENTIAL // BOARD OF DIRECTORS & RISK COMMITTEE BRIEFING",
+        "execSummaryTitle": "1. Executive Cyber Risk Quantification Summary",
+        "execMethodology": "Quantification uses a simplified FAIR-inspired model using vectorized Monte Carlo simulation (50,000 annualized iterations).",
+        "boardRecTitle": "4. Capital Allocation & Control Recommendation",
+        "signOffCiso": "Chief Information Security Officer (CISO)",
+        "signOffCro": "Chief Risk Officer (CRO)",
+        "signOffDate": "Model Verification Date"
+      },
+      "archTab": {
+        "title": "System Architecture, Design System & Production Code (Python / FastAPI / Docker)",
+        "subtitle": "Complete production-ready source files for deploying WayQuant: directory structure, vectorized NumPy/SciPy Monte Carlo core, Tailwind config, and Docker Compose stack.",
+        "copyBtn": "Copy Code",
+        "copiedBtn": "Copied",
+        "sections": {
+          "structure": "1. Architecture & Directory Tree",
+          "tailwind": "2. Design System (Tailwind)",
+          "pythonEngine": "3. Python Vectorized Engine",
+          "fastapi": "4. FastAPI Endpoints",
+          "docker": "5. Docker & docker-compose.yml"
+        }
+      }
+    }
+  },
+  "presets": {
+    "payment_gw": {
+      "ransomware": {
+        "lefMin": 0.25,
+        "lefMode": 0.85,
+        "lefMax": 2.4,
+        "lefGamma": 4,
+        "plmMin": 180000,
+        "plmMode": 650000,
+        "plmMax": 2400000,
+        "plmGamma": 4,
+        "slefProb": 0.65,
+        "slmMin": 250000,
+        "slmMode": 950000,
+        "slmMax": 8500000,
+        "riskAppetite": 3200000
+      },
+      "exfiltration": {
+        "lefMin": 0.15,
+        "lefMode": 0.55,
+        "lefMax": 1.8,
+        "lefGamma": 4,
+        "plmMin": 95000,
+        "plmMode": 320000,
+        "plmMax": 1100000,
+        "plmGamma": 4,
+        "slefProb": 0.85,
+        "slmMin": 500000,
+        "slmMode": 1850000,
+        "slmMax": 14500000,
+        "riskAppetite": 4000000
+      },
+      "ddos": {
+        "lefMin": 0.8,
+        "lefMode": 2.1,
+        "lefMax": 5.5,
+        "lefGamma": 4,
+        "plmMin": 60000,
+        "plmMode": 240000,
+        "plmMax": 980000,
+        "plmGamma": 4,
+        "slefProb": 0.35,
+        "slmMin": 80000,
+        "slmMode": 310000,
+        "slmMax": 2200000,
+        "riskAppetite": 2500000
+      },
+      "supply_chain": {
+        "lefMin": 0.1,
+        "lefMode": 0.35,
+        "lefMax": 1.2,
+        "lefGamma": 4,
+        "plmMin": 300000,
+        "plmMode": 920000,
+        "plmMax": 3500000,
+        "plmGamma": 4,
+        "slefProb": 0.75,
+        "slmMin": 450000,
+        "slmMode": 1600000,
+        "slmMax": 12000000,
+        "riskAppetite": 3500000
+      },
+      "bec": {
+        "lefMin": 0.35,
+        "lefMode": 1.1,
+        "lefMax": 3.2,
+        "lefGamma": 4,
+        "plmMin": 85000,
+        "plmMode": 420000,
+        "plmMax": 2600000,
+        "plmGamma": 4,
+        "slefProb": 0.72,
+        "slmMin": 180000,
+        "slmMode": 1250000,
+        "slmMax": 9200000,
+        "riskAppetite": 3300000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.12,
+        "lefMode": 0.42,
+        "lefMax": 1.6,
+        "lefGamma": 4,
+        "plmMin": 210000,
+        "plmMode": 780000,
+        "plmMax": 3200000,
+        "plmGamma": 4,
+        "slefProb": 0.68,
+        "slmMin": 300000,
+        "slmMode": 1400000,
+        "slmMax": 10500000,
+        "riskAppetite": 3700000
+      },
+      "insider": {
+        "lefMin": 0.08,
+        "lefMode": 0.28,
+        "lefMax": 1.1,
+        "lefGamma": 4,
+        "plmMin": 120000,
+        "plmMode": 520000,
+        "plmMax": 2100000,
+        "plmGamma": 4,
+        "slefProb": 0.62,
+        "slmMin": 250000,
+        "slmMode": 1100000,
+        "slmMax": 7600000,
+        "riskAppetite": 3000000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.1,
+        "lefMode": 0.38,
+        "lefMax": 1.4,
+        "lefGamma": 4,
+        "plmMin": 240000,
+        "plmMode": 880000,
+        "plmMax": 3800000,
+        "plmGamma": 4,
+        "slefProb": 0.76,
+        "slmMin": 380000,
+        "slmMode": 1700000,
+        "slmMax": 13200000,
+        "riskAppetite": 3900000
+      }
+    },
+    "cloud_dwh": {
+      "ransomware": {
+        "lefMin": 0.2,
+        "lefMode": 0.7,
+        "lefMax": 2,
+        "lefGamma": 4,
+        "plmMin": 120000,
+        "plmMode": 480000,
+        "plmMax": 1900000,
+        "plmGamma": 4,
+        "slefProb": 0.7,
+        "slmMin": 350000,
+        "slmMode": 1250000,
+        "slmMax": 11000000,
+        "riskAppetite": 3500000
+      },
+      "exfiltration": {
+        "lefMin": 0.3,
+        "lefMode": 0.9,
+        "lefMax": 2.5,
+        "lefGamma": 4,
+        "plmMin": 110000,
+        "plmMode": 380000,
+        "plmMax": 1400000,
+        "plmGamma": 4,
+        "slefProb": 0.9,
+        "slmMin": 600000,
+        "slmMode": 2200000,
+        "slmMax": 18000000,
+        "riskAppetite": 4500000
+      },
+      "ddos": {
+        "lefMin": 0.4,
+        "lefMode": 1.1,
+        "lefMax": 3,
+        "lefGamma": 4,
+        "plmMin": 45000,
+        "plmMode": 160000,
+        "plmMax": 620000,
+        "plmGamma": 4,
+        "slefProb": 0.25,
+        "slmMin": 50000,
+        "slmMode": 180000,
+        "slmMax": 1200000,
+        "riskAppetite": 2000000
+      },
+      "supply_chain": {
+        "lefMin": 0.15,
+        "lefMode": 0.45,
+        "lefMax": 1.5,
+        "lefGamma": 4,
+        "plmMin": 220000,
+        "plmMode": 750000,
+        "plmMax": 2900000,
+        "plmGamma": 4,
+        "slefProb": 0.8,
+        "slmMin": 500000,
+        "slmMode": 1900000,
+        "slmMax": 15000000,
+        "riskAppetite": 4000000
+      },
+      "bec": {
+        "lefMin": 0.45,
+        "lefMode": 1.35,
+        "lefMax": 3.8,
+        "lefGamma": 4,
+        "plmMin": 70000,
+        "plmMode": 360000,
+        "plmMax": 2100000,
+        "plmGamma": 4,
+        "slefProb": 0.78,
+        "slmMin": 450000,
+        "slmMode": 1850000,
+        "slmMax": 14500000,
+        "riskAppetite": 4200000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.18,
+        "lefMode": 0.58,
+        "lefMax": 1.9,
+        "lefGamma": 4,
+        "plmMin": 140000,
+        "plmMode": 560000,
+        "plmMax": 2300000,
+        "plmGamma": 4,
+        "slefProb": 0.82,
+        "slmMin": 520000,
+        "slmMode": 2100000,
+        "slmMax": 16000000,
+        "riskAppetite": 4300000
+      },
+      "insider": {
+        "lefMin": 0.1,
+        "lefMode": 0.34,
+        "lefMax": 1.25,
+        "lefGamma": 4,
+        "plmMin": 95000,
+        "plmMode": 410000,
+        "plmMax": 1700000,
+        "plmGamma": 4,
+        "slefProb": 0.74,
+        "slmMin": 380000,
+        "slmMode": 1550000,
+        "slmMax": 11800000,
+        "riskAppetite": 3600000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.16,
+        "lefMode": 0.52,
+        "lefMax": 1.75,
+        "lefGamma": 4,
+        "plmMin": 190000,
+        "plmMode": 690000,
+        "plmMax": 2800000,
+        "plmGamma": 4,
+        "slefProb": 0.83,
+        "slmMin": 570000,
+        "slmMode": 2250000,
+        "slmMax": 17500000,
+        "riskAppetite": 4400000
+      }
+    },
+    "swift_node": {
+      "ransomware": {
+        "lefMin": 0.12,
+        "lefMode": 0.42,
+        "lefMax": 1.5,
+        "lefGamma": 4,
+        "plmMin": 260000,
+        "plmMode": 950000,
+        "plmMax": 3900000,
+        "plmGamma": 4,
+        "slefProb": 0.64,
+        "slmMin": 420000,
+        "slmMode": 1650000,
+        "slmMax": 12500000,
+        "riskAppetite": 4300000
+      },
+      "exfiltration": {
+        "lefMin": 0.16,
+        "lefMode": 0.55,
+        "lefMax": 1.85,
+        "lefGamma": 4,
+        "plmMin": 180000,
+        "plmMode": 620000,
+        "plmMax": 2500000,
+        "plmGamma": 4,
+        "slefProb": 0.88,
+        "slmMin": 780000,
+        "slmMode": 2850000,
+        "slmMax": 22000000,
+        "riskAppetite": 5200000
+      },
+      "ddos": {
+        "lefMin": 0.65,
+        "lefMode": 1.85,
+        "lefMax": 4.8,
+        "lefGamma": 4,
+        "plmMin": 95000,
+        "plmMode": 360000,
+        "plmMax": 1450000,
+        "plmGamma": 4,
+        "slefProb": 0.42,
+        "slmMin": 140000,
+        "slmMode": 520000,
+        "slmMax": 3900000,
+        "riskAppetite": 3600000
+      },
+      "supply_chain": {
+        "lefMin": 0.13,
+        "lefMode": 0.4,
+        "lefMax": 1.35,
+        "lefGamma": 4,
+        "plmMin": 340000,
+        "plmMode": 1180000,
+        "plmMax": 4700000,
+        "plmGamma": 4,
+        "slefProb": 0.78,
+        "slmMin": 620000,
+        "slmMode": 2300000,
+        "slmMax": 18000000,
+        "riskAppetite": 4800000
+      },
+      "bec": {
+        "lefMin": 0.28,
+        "lefMode": 0.82,
+        "lefMax": 2.6,
+        "lefGamma": 4,
+        "plmMin": 130000,
+        "plmMode": 680000,
+        "plmMax": 4300000,
+        "plmGamma": 4,
+        "slefProb": 0.76,
+        "slmMin": 360000,
+        "slmMode": 1550000,
+        "slmMax": 11800000,
+        "riskAppetite": 4100000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.14,
+        "lefMode": 0.46,
+        "lefMax": 1.65,
+        "lefGamma": 4,
+        "plmMin": 290000,
+        "plmMode": 1020000,
+        "plmMax": 4200000,
+        "plmGamma": 4,
+        "slefProb": 0.7,
+        "slmMin": 480000,
+        "slmMode": 1900000,
+        "slmMax": 14800000,
+        "riskAppetite": 4600000
+      },
+      "insider": {
+        "lefMin": 0.07,
+        "lefMode": 0.25,
+        "lefMax": 0.95,
+        "lefGamma": 4,
+        "plmMin": 160000,
+        "plmMode": 610000,
+        "plmMax": 2700000,
+        "plmGamma": 4,
+        "slefProb": 0.68,
+        "slmMin": 410000,
+        "slmMode": 1650000,
+        "slmMax": 12600000,
+        "riskAppetite": 3900000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.12,
+        "lefMode": 0.39,
+        "lefMax": 1.3,
+        "lefGamma": 4,
+        "plmMin": 310000,
+        "plmMode": 1090000,
+        "plmMax": 4500000,
+        "plmGamma": 4,
+        "slefProb": 0.81,
+        "slmMin": 680000,
+        "slmMode": 2500000,
+        "slmMax": 19500000,
+        "riskAppetite": 4900000
+      }
+    },
+    "iam_dir": {
+      "ransomware": {
+        "lefMin": 0.22,
+        "lefMode": 0.76,
+        "lefMax": 2.2,
+        "lefGamma": 4,
+        "plmMin": 140000,
+        "plmMode": 570000,
+        "plmMax": 2200000,
+        "plmGamma": 4,
+        "slefProb": 0.69,
+        "slmMin": 330000,
+        "slmMode": 1280000,
+        "slmMax": 9800000,
+        "riskAppetite": 3400000
+      },
+      "exfiltration": {
+        "lefMin": 0.24,
+        "lefMode": 0.78,
+        "lefMax": 2.3,
+        "lefGamma": 4,
+        "plmMin": 150000,
+        "plmMode": 520000,
+        "plmMax": 2050000,
+        "plmGamma": 4,
+        "slefProb": 0.87,
+        "slmMin": 690000,
+        "slmMode": 2600000,
+        "slmMax": 19800000,
+        "riskAppetite": 4700000
+      },
+      "ddos": {
+        "lefMin": 0.3,
+        "lefMode": 0.92,
+        "lefMax": 2.7,
+        "lefGamma": 4,
+        "plmMin": 50000,
+        "plmMode": 185000,
+        "plmMax": 740000,
+        "plmGamma": 4,
+        "slefProb": 0.3,
+        "slmMin": 65000,
+        "slmMode": 245000,
+        "slmMax": 1850000,
+        "riskAppetite": 2300000
+      },
+      "supply_chain": {
+        "lefMin": 0.14,
+        "lefMode": 0.43,
+        "lefMax": 1.45,
+        "lefGamma": 4,
+        "plmMin": 210000,
+        "plmMode": 760000,
+        "plmMax": 3100000,
+        "plmGamma": 4,
+        "slefProb": 0.79,
+        "slmMin": 480000,
+        "slmMode": 1820000,
+        "slmMax": 13900000,
+        "riskAppetite": 3800000
+      },
+      "bec": {
+        "lefMin": 0.55,
+        "lefMode": 1.6,
+        "lefMax": 4.5,
+        "lefGamma": 4,
+        "plmMin": 110000,
+        "plmMode": 580000,
+        "plmMax": 3600000,
+        "plmGamma": 4,
+        "slefProb": 0.84,
+        "slmMin": 300000,
+        "slmMode": 1420000,
+        "slmMax": 11000000,
+        "riskAppetite": 3900000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.2,
+        "lefMode": 0.65,
+        "lefMax": 2.1,
+        "lefGamma": 4,
+        "plmMin": 180000,
+        "plmMode": 720000,
+        "plmMax": 2950000,
+        "plmGamma": 4,
+        "slefProb": 0.83,
+        "slmMin": 430000,
+        "slmMode": 1750000,
+        "slmMax": 13400000,
+        "riskAppetite": 4000000
+      },
+      "insider": {
+        "lefMin": 0.13,
+        "lefMode": 0.42,
+        "lefMax": 1.55,
+        "lefGamma": 4,
+        "plmMin": 130000,
+        "plmMode": 560000,
+        "plmMax": 2300000,
+        "plmGamma": 4,
+        "slefProb": 0.78,
+        "slmMin": 350000,
+        "slmMode": 1400000,
+        "slmMax": 10800000,
+        "riskAppetite": 3500000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.15,
+        "lefMode": 0.48,
+        "lefMax": 1.65,
+        "lefGamma": 4,
+        "plmMin": 220000,
+        "plmMode": 790000,
+        "plmMax": 3250000,
+        "plmGamma": 4,
+        "slefProb": 0.8,
+        "slmMin": 500000,
+        "slmMode": 1920000,
+        "slmMax": 14600000,
+        "riskAppetite": 4000000
+      }
+    },
+    "scada_grid": {
+      "ransomware": {
+        "lefMin": 0.1,
+        "lefMode": 0.36,
+        "lefMax": 1.25,
+        "lefGamma": 4,
+        "plmMin": 420000,
+        "plmMode": 1580000,
+        "plmMax": 6200000,
+        "plmGamma": 4,
+        "slefProb": 0.72,
+        "slmMin": 500000,
+        "slmMode": 1950000,
+        "slmMax": 15500000,
+        "riskAppetite": 5500000
+      },
+      "exfiltration": {
+        "lefMin": 0.08,
+        "lefMode": 0.3,
+        "lefMax": 1.1,
+        "lefGamma": 4,
+        "plmMin": 190000,
+        "plmMode": 720000,
+        "plmMax": 2900000,
+        "plmGamma": 4,
+        "slefProb": 0.8,
+        "slmMin": 520000,
+        "slmMode": 2050000,
+        "slmMax": 16000000,
+        "riskAppetite": 4800000
+      },
+      "ddos": {
+        "lefMin": 0.35,
+        "lefMode": 1.05,
+        "lefMax": 3.2,
+        "lefGamma": 4,
+        "plmMin": 360000,
+        "plmMode": 1320000,
+        "plmMax": 5200000,
+        "plmGamma": 4,
+        "slefProb": 0.61,
+        "slmMin": 460000,
+        "slmMode": 1800000,
+        "slmMax": 14200000,
+        "riskAppetite": 5200000
+      },
+      "supply_chain": {
+        "lefMin": 0.12,
+        "lefMode": 0.39,
+        "lefMax": 1.45,
+        "lefGamma": 4,
+        "plmMin": 510000,
+        "plmMode": 1860000,
+        "plmMax": 7400000,
+        "plmGamma": 4,
+        "slefProb": 0.78,
+        "slmMin": 680000,
+        "slmMode": 2600000,
+        "slmMax": 20500000,
+        "riskAppetite": 6100000
+      },
+      "bec": {
+        "lefMin": 0.18,
+        "lefMode": 0.58,
+        "lefMax": 1.9,
+        "lefGamma": 4,
+        "plmMin": 170000,
+        "plmMode": 740000,
+        "plmMax": 3000000,
+        "plmGamma": 4,
+        "slefProb": 0.76,
+        "slmMin": 320000,
+        "slmMode": 1300000,
+        "slmMax": 9800000,
+        "riskAppetite": 4300000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.16,
+        "lefMode": 0.52,
+        "lefMax": 1.85,
+        "lefGamma": 4,
+        "plmMin": 620000,
+        "plmMode": 2280000,
+        "plmMax": 9100000,
+        "plmGamma": 4,
+        "slefProb": 0.73,
+        "slmMin": 720000,
+        "slmMode": 2800000,
+        "slmMax": 22000000,
+        "riskAppetite": 6500000
+      },
+      "insider": {
+        "lefMin": 0.06,
+        "lefMode": 0.22,
+        "lefMax": 0.88,
+        "lefGamma": 4,
+        "plmMin": 470000,
+        "plmMode": 1720000,
+        "plmMax": 6900000,
+        "plmGamma": 4,
+        "slefProb": 0.7,
+        "slmMin": 610000,
+        "slmMode": 2350000,
+        "slmMax": 18400000,
+        "riskAppetite": 5700000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.09,
+        "lefMode": 0.32,
+        "lefMax": 1.2,
+        "lefGamma": 4,
+        "plmMin": 530000,
+        "plmMode": 1940000,
+        "plmMax": 7800000,
+        "plmGamma": 4,
+        "slefProb": 0.79,
+        "slmMin": 700000,
+        "slmMode": 2700000,
+        "slmMax": 21200000,
+        "riskAppetite": 6300000
+      }
+    },
+    "ehr_lake": {
+      "ransomware": {
+        "lefMin": 0.18,
+        "lefMode": 0.62,
+        "lefMax": 1.9,
+        "lefGamma": 4,
+        "plmMin": 250000,
+        "plmMode": 980000,
+        "plmMax": 4100000,
+        "plmGamma": 4,
+        "slefProb": 0.77,
+        "slmMin": 720000,
+        "slmMode": 2750000,
+        "slmMax": 21500000,
+        "riskAppetite": 4800000
+      },
+      "exfiltration": {
+        "lefMin": 0.26,
+        "lefMode": 0.82,
+        "lefMax": 2.45,
+        "lefGamma": 4,
+        "plmMin": 190000,
+        "plmMode": 710000,
+        "plmMax": 2950000,
+        "plmGamma": 4,
+        "slefProb": 0.94,
+        "slmMin": 1050000,
+        "slmMode": 3900000,
+        "slmMax": 30500000,
+        "riskAppetite": 6200000
+      },
+      "ddos": {
+        "lefMin": 0.22,
+        "lefMode": 0.72,
+        "lefMax": 2.2,
+        "lefGamma": 4,
+        "plmMin": 85000,
+        "plmMode": 330000,
+        "plmMax": 1380000,
+        "plmGamma": 4,
+        "slefProb": 0.43,
+        "slmMin": 150000,
+        "slmMode": 580000,
+        "slmMax": 4500000,
+        "riskAppetite": 3300000
+      },
+      "supply_chain": {
+        "lefMin": 0.16,
+        "lefMode": 0.51,
+        "lefMax": 1.75,
+        "lefGamma": 4,
+        "plmMin": 330000,
+        "plmMode": 1240000,
+        "plmMax": 5100000,
+        "plmGamma": 4,
+        "slefProb": 0.86,
+        "slmMin": 820000,
+        "slmMode": 3100000,
+        "slmMax": 24500000,
+        "riskAppetite": 5500000
+      },
+      "bec": {
+        "lefMin": 0.38,
+        "lefMode": 1.12,
+        "lefMax": 3.4,
+        "lefGamma": 4,
+        "plmMin": 125000,
+        "plmMode": 610000,
+        "plmMax": 3850000,
+        "plmGamma": 4,
+        "slefProb": 0.82,
+        "slmMin": 610000,
+        "slmMode": 2380000,
+        "slmMax": 18600000,
+        "riskAppetite": 5000000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.2,
+        "lefMode": 0.64,
+        "lefMax": 2.05,
+        "lefGamma": 4,
+        "plmMin": 260000,
+        "plmMode": 1010000,
+        "plmMax": 4250000,
+        "plmGamma": 4,
+        "slefProb": 0.88,
+        "slmMin": 880000,
+        "slmMode": 3300000,
+        "slmMax": 25800000,
+        "riskAppetite": 5700000
+      },
+      "insider": {
+        "lefMin": 0.12,
+        "lefMode": 0.4,
+        "lefMax": 1.5,
+        "lefGamma": 4,
+        "plmMin": 180000,
+        "plmMode": 700000,
+        "plmMax": 2900000,
+        "plmGamma": 4,
+        "slefProb": 0.91,
+        "slmMin": 920000,
+        "slmMode": 3500000,
+        "slmMax": 27400000,
+        "riskAppetite": 5600000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.15,
+        "lefMode": 0.49,
+        "lefMax": 1.7,
+        "lefGamma": 4,
+        "plmMin": 350000,
+        "plmMode": 1310000,
+        "plmMax": 5400000,
+        "plmGamma": 4,
+        "slefProb": 0.88,
+        "slmMin": 850000,
+        "slmMode": 3250000,
+        "slmMax": 25500000,
+        "riskAppetite": 5800000
+      }
+    },
+    "ach_clearing": {
+      "ransomware": {
+        "lefMin": 0.16,
+        "lefMode": 0.55,
+        "lefMax": 1.8,
+        "lefGamma": 4,
+        "plmMin": 300000,
+        "plmMode": 1120000,
+        "plmMax": 4600000,
+        "plmGamma": 4,
+        "slefProb": 0.7,
+        "slmMin": 450000,
+        "slmMode": 1750000,
+        "slmMax": 13800000,
+        "riskAppetite": 5000000
+      },
+      "exfiltration": {
+        "lefMin": 0.14,
+        "lefMode": 0.48,
+        "lefMax": 1.65,
+        "lefGamma": 4,
+        "plmMin": 210000,
+        "plmMode": 790000,
+        "plmMax": 3250000,
+        "plmGamma": 4,
+        "slefProb": 0.91,
+        "slmMin": 720000,
+        "slmMode": 2750000,
+        "slmMax": 21600000,
+        "riskAppetite": 5400000
+      },
+      "ddos": {
+        "lefMin": 0.55,
+        "lefMode": 1.62,
+        "lefMax": 4.5,
+        "lefGamma": 4,
+        "plmMin": 240000,
+        "plmMode": 920000,
+        "plmMax": 3800000,
+        "plmGamma": 4,
+        "slefProb": 0.57,
+        "slmMin": 300000,
+        "slmMode": 1180000,
+        "slmMax": 9400000,
+        "riskAppetite": 4700000
+      },
+      "supply_chain": {
+        "lefMin": 0.14,
+        "lefMode": 0.46,
+        "lefMax": 1.58,
+        "lefGamma": 4,
+        "plmMin": 390000,
+        "plmMode": 1450000,
+        "plmMax": 5950000,
+        "plmGamma": 4,
+        "slefProb": 0.82,
+        "slmMin": 620000,
+        "slmMode": 2380000,
+        "slmMax": 18700000,
+        "riskAppetite": 5600000
+      },
+      "bec": {
+        "lefMin": 0.42,
+        "lefMode": 1.25,
+        "lefMax": 3.7,
+        "lefGamma": 4,
+        "plmMin": 160000,
+        "plmMode": 760000,
+        "plmMax": 4850000,
+        "plmGamma": 4,
+        "slefProb": 0.86,
+        "slmMin": 420000,
+        "slmMode": 1750000,
+        "slmMax": 13800000,
+        "riskAppetite": 4900000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.18,
+        "lefMode": 0.59,
+        "lefMax": 1.95,
+        "lefGamma": 4,
+        "plmMin": 330000,
+        "plmMode": 1230000,
+        "plmMax": 5100000,
+        "plmGamma": 4,
+        "slefProb": 0.77,
+        "slmMin": 520000,
+        "slmMode": 2050000,
+        "slmMax": 16000000,
+        "riskAppetite": 5300000
+      },
+      "insider": {
+        "lefMin": 0.1,
+        "lefMode": 0.34,
+        "lefMax": 1.3,
+        "lefGamma": 4,
+        "plmMin": 190000,
+        "plmMode": 730000,
+        "plmMax": 3050000,
+        "plmGamma": 4,
+        "slefProb": 0.83,
+        "slmMin": 470000,
+        "slmMode": 1850000,
+        "slmMax": 14500000,
+        "riskAppetite": 4600000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.13,
+        "lefMode": 0.43,
+        "lefMax": 1.5,
+        "lefGamma": 4,
+        "plmMin": 410000,
+        "plmMode": 1510000,
+        "plmMax": 6200000,
+        "plmGamma": 4,
+        "slefProb": 0.84,
+        "slmMin": 650000,
+        "slmMode": 2500000,
+        "slmMax": 19700000,
+        "riskAppetite": 5700000
+      }
+    },
+    "water_ot": {
+      "ransomware": {
+        "lefMin": 0.09,
+        "lefMode": 0.33,
+        "lefMax": 1.18,
+        "lefGamma": 4,
+        "plmMin": 310000,
+        "plmMode": 1180000,
+        "plmMax": 4900000,
+        "plmGamma": 4,
+        "slefProb": 0.66,
+        "slmMin": 380000,
+        "slmMode": 1480000,
+        "slmMax": 11600000,
+        "riskAppetite": 4600000
+      },
+      "exfiltration": {
+        "lefMin": 0.07,
+        "lefMode": 0.25,
+        "lefMax": 0.92,
+        "lefGamma": 4,
+        "plmMin": 145000,
+        "plmMode": 550000,
+        "plmMax": 2250000,
+        "plmGamma": 4,
+        "slefProb": 0.74,
+        "slmMin": 260000,
+        "slmMode": 1020000,
+        "slmMax": 8000000,
+        "riskAppetite": 3700000
+      },
+      "ddos": {
+        "lefMin": 0.26,
+        "lefMode": 0.82,
+        "lefMax": 2.6,
+        "lefGamma": 4,
+        "plmMin": 280000,
+        "plmMode": 1060000,
+        "plmMax": 4400000,
+        "plmGamma": 4,
+        "slefProb": 0.52,
+        "slmMin": 340000,
+        "slmMode": 1320000,
+        "slmMax": 10400000,
+        "riskAppetite": 4500000
+      },
+      "supply_chain": {
+        "lefMin": 0.11,
+        "lefMode": 0.36,
+        "lefMax": 1.32,
+        "lefGamma": 4,
+        "plmMin": 420000,
+        "plmMode": 1560000,
+        "plmMax": 6400000,
+        "plmGamma": 4,
+        "slefProb": 0.76,
+        "slmMin": 510000,
+        "slmMode": 1980000,
+        "slmMax": 15600000,
+        "riskAppetite": 5200000
+      },
+      "bec": {
+        "lefMin": 0.15,
+        "lefMode": 0.48,
+        "lefMax": 1.62,
+        "lefGamma": 4,
+        "plmMin": 115000,
+        "plmMode": 490000,
+        "plmMax": 3100000,
+        "plmGamma": 4,
+        "slefProb": 0.72,
+        "slmMin": 210000,
+        "slmMode": 850000,
+        "slmMax": 6600000,
+        "riskAppetite": 3500000
+      },
+      "edge_zero_day": {
+        "lefMin": 0.17,
+        "lefMode": 0.55,
+        "lefMax": 1.9,
+        "lefGamma": 4,
+        "plmMin": 520000,
+        "plmMode": 1940000,
+        "plmMax": 8000000,
+        "plmGamma": 4,
+        "slefProb": 0.71,
+        "slmMin": 620000,
+        "slmMode": 2400000,
+        "slmMax": 18900000,
+        "riskAppetite": 5700000
+      },
+      "insider": {
+        "lefMin": 0.08,
+        "lefMode": 0.27,
+        "lefMax": 1.02,
+        "lefGamma": 4,
+        "plmMin": 350000,
+        "plmMode": 1320000,
+        "plmMax": 5500000,
+        "plmGamma": 4,
+        "slefProb": 0.68,
+        "slmMin": 430000,
+        "slmMode": 1680000,
+        "slmMax": 13200000,
+        "riskAppetite": 4900000
+      },
+      "dependency_poisoning": {
+        "lefMin": 0.08,
+        "lefMode": 0.29,
+        "lefMax": 1.08,
+        "lefGamma": 4,
+        "plmMin": 440000,
+        "plmMode": 1630000,
+        "plmMax": 6700000,
+        "plmGamma": 4,
+        "slefProb": 0.77,
+        "slmMin": 540000,
+        "slmMode": 2100000,
+        "slmMax": 16500000,
+        "riskAppetite": 5400000
+      }
+    }
+  },
+  "controlKeys": {
+    "ransomware": "ransomware",
+    "exfiltration": "apt",
+    "ddos": "ddos",
+    "supply_chain": "supply_chain",
+    "bec": "phishing_bec",
+    "edge_zero_day": "zero_day",
+    "insider": "insider",
+    "dependency_poisoning": "cicd_poisoning"
+  },
+  "controls": {
+    "ransomware": [
+      {
+        "id": "edr",
+        "nist": "NIST DE.CM",
+        "name": {
+          "en": "EDR/XDR Telemetry & Behavioral Host Isolation",
+          "ru": "Телеметрия EDR/XDR и поведенческая изоляция хостов"
+        },
+        "desc": {
+          "en": "Automated lateral movement and encryption kill-chain disruption.",
+          "ru": "Автоматическое блокирование латерального перемещения и шифрования."
+        },
+        "cost": 145000,
+        "lef": -38,
+        "plm": -25,
+        "slm": -15
+      },
+      {
+        "id": "worm",
+        "nist": "NIST PR.DS / RC.RP",
+        "name": {
+          "en": "Immutable Air-Gapped WORM Backups",
+          "ru": "Неизменяемые изолированные резервные копии (Air-Gapped WORM)"
+        },
+        "desc": {
+          "en": "Guaranteed critical DB recovery without ransom payment; RTO < 6 hrs.",
+          "ru": "Восстановление критических БД без уплаты выкупа; сокращение RTO."
+        },
+        "cost": 110000,
+        "lef": -5,
+        "plm": -52,
+        "slm": -30
+      },
+      {
+        "id": "mfa",
+        "nist": "NIST PR.AA / PR.IR",
+        "name": {
+          "en": "Zero-Trust Microsegmentation & Hardware FIDO2 MFA",
+          "ru": "Микросегментация Zero-Trust и аппаратный MFA (FIDO2)"
+        },
+        "desc": {
+          "en": "Blast radius containment across segmented network enclaves.",
+          "ru": "Локализация радиуса поражения (Blast Radius) внутри сетевых анклавов."
+        },
+        "cost": 185000,
+        "lef": -42,
+        "plm": -20,
+        "slm": -20
+      },
+      {
+        "id": "dlp",
+        "nist": "NIST PR.DS",
+        "name": {
+          "en": "Database Field Tokenization & Egress DLP",
+          "ru": "Криптографическая защита полей БД (Tokenization) и Egress DLP"
+        },
+        "desc": {
+          "en": "Mitigates secondary breach penalties (GDPR/PCI) via zero data readability.",
+          "ru": "Снижает штрафы (GDPR/PCI-DSS) и вторичный ущерб при утечке."
+        },
+        "cost": 130000,
+        "lef": -12,
+        "plm": -10,
+        "slm": -48
+      }
+    ],
+    "apt": [
+      {
+        "id": "apt_dlp",
+        "nist": "NIST PR.DS",
+        "name": {
+          "en": "Network Traffic DLP & Strict Egress Filtering",
+          "ru": "DLP-система сетевого анализа и жесткая фильтрация Egress"
+        },
+        "desc": {
+          "en": "Blocks exfiltration channels, C2 beacons, and covert tunnels.",
+          "ru": "Блокировка передачи скрытых дампов и туннелирования вовне."
+        },
+        "cost": 140000,
+        "lef": -25,
+        "plm": -15,
+        "slm": -50
+      },
+      {
+        "id": "apt_ueba",
+        "nist": "NIST DE.AE",
+        "name": {
+          "en": "User & Entity Behavior Analytics (UEBA / NDR)",
+          "ru": "Поведенческий анализ пользователей и сущностей (UEBA/NDR)"
+        },
+        "desc": {
+          "en": "Machine-learning anomaly detection for lateral movement and credential abuse.",
+          "ru": "Выявление аномальной сетевой активности и скрытых каналов C2."
+        },
+        "cost": 160000,
+        "lef": -35,
+        "plm": -20,
+        "slm": -25
+      },
+      {
+        "id": "apt_pam",
+        "nist": "NIST PR.AA",
+        "name": {
+          "en": "Privileged Access Management (Ephemeral JIT Access)",
+          "ru": "Контроль привилегированного доступа (PAM с JIT-правами)"
+        },
+        "desc": {
+          "en": "Eliminates standing privileges and isolates administrative jump-boxes.",
+          "ru": "Изоляция админских сессий и запрет постоянных прав суперпользователя."
+        },
+        "cost": 175000,
+        "lef": -40,
+        "plm": -30,
+        "slm": -20
+      },
+      {
+        "id": "apt_crypto",
+        "nist": "NIST PR.DS",
+        "name": {
+          "en": "End-to-End Cryptography (mTLS & Cloud KMS)",
+          "ru": "Сквозное шифрование данных в покое и транзите (mTLS + KMS)"
+        },
+        "desc": {
+          "en": "Guarantees wire-level confidentiality across microservices.",
+          "ru": "Защита от перехвата данных на внутренних шинах сообщений."
+        },
+        "cost": 120000,
+        "lef": -10,
+        "plm": -15,
+        "slm": -45
+      }
+    ],
+    "ddos": [
+      {
+        "id": "ddos_cloud",
+        "nist": "NIST PR.IR",
+        "name": {
+          "en": "Cloud-Based Anycast Scrubbing Network (Cloudflare/AWS Shield)",
+          "ru": "Облачная эшелонированная очистка трафика (BGP Anycast / Cloudflare)"
+        },
+        "desc": {
+          "en": "Absorbs multi-terabit volumetric L3/L4 DDoS floods at the edge.",
+          "ru": "Подавление объемных атак L3/L4 емкостью свыше 2 Тбит/с."
+        },
+        "cost": 180000,
+        "lef": -60,
+        "plm": -45,
+        "slm": -20
+      },
+      {
+        "id": "ddos_waf",
+        "nist": "NIST DE.CM",
+        "name": {
+          "en": "L7 API Gateway WAF & Behavioral Rate Limiting",
+          "ru": "L7 WAF с машинным обучением и поведенческим Rate Limiting"
+        },
+        "desc": {
+          "en": "Throttles HTTP-flood attacks and mitigates malicious bot traffic.",
+          "ru": "Защита API-эндпоинтов и шлюзов от HTTP-flood и ботнетов."
+        },
+        "cost": 115000,
+        "lef": -45,
+        "plm": -30,
+        "slm": -15
+      },
+      {
+        "id": "ddos_dns",
+        "nist": "NIST PR.IR",
+        "name": {
+          "en": "Geo-Redundant Anycast DNS Architecture",
+          "ru": "Географическое резервирование и Anycast DNS"
+        },
+        "desc": {
+          "en": "Resilient name resolution mitigating authoritative DNS outage risks.",
+          "ru": "Отказоустойчивость разрешения имен при атаках на DNS."
+        },
+        "cost": 95000,
+        "lef": -20,
+        "plm": -40,
+        "slm": -25
+      },
+      {
+        "id": "ddos_cdn",
+        "nist": "NIST PR.IR",
+        "name": {
+          "en": "Elastic Auto-Scaling Infrastructure & Edge Caching",
+          "ru": "Автоматическое масштабирование и распределение нагрузки (CDN/LB)"
+        },
+        "desc": {
+          "en": "Dynamic compute elasticity to absorb sudden traffic spikes.",
+          "ru": "Эластичное перераспределение нагрузки при всплесках трафика."
+        },
+        "cost": 130000,
+        "lef": -25,
+        "plm": -35,
+        "slm": -10
+      }
+    ],
+    "supply_chain": [
+      {
+        "id": "sc_sig",
+        "nist": "NIST PR.PS",
+        "name": {
+          "en": "Artifact Cryptographic Signing (Cosign / Sigstore)",
+          "ru": "Криптографическая подпись артефактов и релизов (Cosign/Sigstore)"
+        },
+        "desc": {
+          "en": "Prevents deployment of unverified container images into production.",
+          "ru": "Запрет деплоя неподписанных образов контейнеров в прод."
+        },
+        "cost": 95000,
+        "lef": -45,
+        "plm": -25,
+        "slm": -20
+      },
+      {
+        "id": "sc_sast",
+        "nist": "NIST PR.PS",
+        "name": {
+          "en": "Automated SAST/DAST & IaC Security Validation",
+          "ru": "Статический анализ SAST/DAST и валидация IaC-манифестов"
+        },
+        "desc": {
+          "en": "Blocks vulnerable pipeline definitions and hardcoded secrets on commit.",
+          "ru": "Автоматический аудит кода пайплайна на этапе Pull Request."
+        },
+        "cost": 135000,
+        "lef": -35,
+        "plm": -15,
+        "slm": -15
+      },
+      {
+        "id": "sc_tprm",
+        "nist": "NIST GV.SC",
+        "name": {
+          "en": "Third-Party Risk Management (TPRM / Vendor Audit)",
+          "ru": "Управление рисками сторонних поставщиков (TPRM-аудит)"
+        },
+        "desc": {
+          "en": "Enforces continuous security posture verification for external vendors.",
+          "ru": "Контроль соответствия требованиям безопасности подрядчиков и SaaS."
+        },
+        "cost": 85000,
+        "lef": -30,
+        "plm": -20,
+        "slm": -30
+      },
+      {
+        "id": "sc_runners",
+        "nist": "NIST PR.IR",
+        "name": {
+          "en": "Ephemeral Isolated CI/CD Build Runners",
+          "ru": "Изолированные эфемерные сборочные раннеры (Isolated Runners)"
+        },
+        "desc": {
+          "en": "Restricts build environments to prevent host sandbox breakout.",
+          "ru": "Защита базового хоста сборки от компрометации сборочным скриптом."
+        },
+        "cost": 110000,
+        "lef": -40,
+        "plm": -30,
+        "slm": -10
+      }
+    ],
+    "phishing_bec": [
+      {
+        "id": "bec_fido",
+        "nist": "NIST PR.AA",
+        "name": {
+          "en": "Hardware FIDO2 / WebAuthn Security Keys",
+          "ru": "Аппаратные FIDO2/WebAuthn-ключи аутентификации"
+        },
+        "desc": {
+          "en": "Full cryptographic defense against Adversary-in-the-Middle (AiTM) phishing.",
+          "ru": "Полная защита от перехвата сессий (Anti-AiTM-фишинг)."
+        },
+        "cost": 80000,
+        "lef": -55,
+        "plm": -20,
+        "slm": -15
+      },
+      {
+        "id": "bec_email",
+        "nist": "NIST DE.CM",
+        "name": {
+          "en": "AI Email Ingestion Filter & Strict DMARC Enforcement",
+          "ru": "ИИ-анализ почтовых заголовков и DMARC/DKIM Enforcement"
+        },
+        "desc": {
+          "en": "NLP anomaly detection for BEC wire-fraud attempts and domain spoofing.",
+          "ru": "Детекция подмены доменов и NLP-анализ манипуляций в письмах."
+        },
+        "cost": 105000,
+        "lef": -50,
+        "plm": -15,
+        "slm": -10
+      },
+      {
+        "id": "bec_policy",
+        "nist": "NIST PR.AA",
+        "name": {
+          "en": "Dual-Control Wire Transfer Verification (Four-Eyes)",
+          "ru": "Регламент верификации платежей («Правило четырех глаз»)"
+        },
+        "desc": {
+          "en": "Mandatory out-of-band verification for capital transfers above threshold.",
+          "ru": "Обязательное вторичное подтверждение транзакций вне основного канала."
+        },
+        "cost": 45000,
+        "lef": -15,
+        "plm": -60,
+        "slm": -35
+      },
+      {
+        "id": "bec_train",
+        "nist": "NIST PR.AT",
+        "name": {
+          "en": "Targeted Executive Phishing & Deepfake Simulations",
+          "ru": "Симуляции целевых Deepfake/AI-атак для руководства"
+        },
+        "desc": {
+          "en": "Specialized training for C-suite to counter advanced social engineering.",
+          "ru": "Практические учения C-Level по выявлению социальной инженерии."
+        },
+        "cost": 60000,
+        "lef": -30,
+        "plm": -10,
+        "slm": -10
+      }
+    ],
+    "zero_day": [
+      {
+        "id": "zd_waf",
+        "nist": "NIST PR.IR",
+        "name": {
+          "en": "Edge Virtual Patching & Deep SSL Inspection",
+          "ru": "Виртуальный патчинг и глубокая инспекция SSL на граничном WAF"
+        },
+        "desc": {
+          "en": "Heuristic and signature filtering of 0-day exploits prior to vendor patches.",
+          "ru": "Сигнатурный и эвристический перехват эксплойтов до выхода патча вендора."
+        },
+        "cost": 160000,
+        "lef": -40,
+        "plm": -25,
+        "slm": -15
+      },
+      {
+        "id": "zd_ztna",
+        "nist": "NIST PR.IR",
+        "name": {
+          "en": "Zero Trust Network Access (ZTNA / Dark Perimeter)",
+          "ru": "Замена VPN на ZTNA с сокрытием периметра (Dark Cloud)"
+        },
+        "desc": {
+          "en": "Cloaks services from public port scans; enforces continuous device attestation.",
+          "ru": "Сервисы недоступны для внешнего сканирования портов."
+        },
+        "cost": 190000,
+        "lef": -50,
+        "plm": -30,
+        "slm": -20
+      },
+      {
+        "id": "zd_dmz",
+        "nist": "NIST PR.IR",
+        "name": {
+          "en": "Edge DMZ Isolation & Egress Kill-Switch",
+          "ru": "Изоляция граничного сегмента (DMZ Microsegmentation)"
+        },
+        "desc": {
+          "en": "Prevents pivot into internal core networks upon gateway compromise.",
+          "ru": "Предотвращение выхода во внутреннюю сеть при пробитии шлюза."
+        },
+        "cost": 125000,
+        "lef": -15,
+        "plm": -45,
+        "slm": -30
+      },
+      {
+        "id": "zd_boot",
+        "nist": "NIST PR.PS",
+        "name": {
+          "en": "Firmware Integrity Monitoring & TPM Remote Attestation",
+          "ru": "Контроль целостности прошивок (Secure Boot / TPM)"
+        },
+        "desc": {
+          "en": "Hardware validation preventing persistent firmware rootkits and implants.",
+          "ru": "Аппаратная защита от закрепления имплантов в энергонезависимой памяти."
+        },
+        "cost": 90000,
+        "lef": -35,
+        "plm": -20,
+        "slm": -10
+      }
+    ],
+    "insider": [
+      {
+        "id": "ins_jit",
+        "nist": "NIST PR.AA",
+        "name": {
+          "en": "Just-In-Time (JIT) Ephemeral Access & Least Privilege",
+          "ru": "Принцип наименьших привилегий и система JIT (Just-In-Time Access)"
+        },
+        "desc": {
+          "en": "Time-bound elevation of administrative privileges with automatic revocation.",
+          "ru": "Выдача прав строго под задачу на ограниченное время с автоотзывом."
+        },
+        "cost": 140000,
+        "lef": -45,
+        "plm": -35,
+        "slm": -25
+      },
+      {
+        "id": "ins_audit",
+        "nist": "NIST PR.PS",
+        "name": {
+          "en": "Immutable SIEM Audit Logging (Air-Gapped WORM)",
+          "ru": "Неизменяемый внешний аудит действий (WORM SIEM Logs)"
+        },
+        "desc": {
+          "en": "Tamper-proof administrative logs preventing evidence destruction.",
+          "ru": "Администратор не может удалить следы своих действий из логов."
+        },
+        "cost": 115000,
+        "lef": -20,
+        "plm": -30,
+        "slm": -40
+      },
+      {
+        "id": "ins_rec",
+        "nist": "NIST DE.CM",
+        "name": {
+          "en": "PAM Session Recording & Destructive Command Interceptor",
+          "ru": "Запись терминальных сессий с анализом опасных команд"
+        },
+        "desc": {
+          "en": "Real-time session termination upon unauthorized privilege escalation attempt.",
+          "ru": "Мгновенный разрыв сессии при попытке деструктивных действий."
+        },
+        "cost": 130000,
+        "lef": -35,
+        "plm": -40,
+        "slm": -20
+      },
+      {
+        "id": "ins_fim",
+        "nist": "NIST DE.CM",
+        "name": {
+          "en": "File Integrity Monitoring (FIM) & DB Activity Auditing",
+          "ru": "Контроль целостности системных файлов и БД (FIM/DAM)"
+        },
+        "desc": {
+          "en": "Alerts on unauthorized modification of production binaries and tables.",
+          "ru": "Оповещение об изменении конфигурационных файлов ядра системы."
+        },
+        "cost": 95000,
+        "lef": -25,
+        "plm": -35,
+        "slm": -15
+      }
+    ],
+    "cicd_poisoning": [
+      {
+        "id": "cicd_sbom",
+        "nist": "NIST ID.RA",
+        "name": {
+          "en": "Dynamic SBOM Generation & Software Composition Analysis",
+          "ru": "Анализ зависимостей (SCA) и генерация динамического SBOM"
+        },
+        "desc": {
+          "en": "Blocks open-source dependencies with known CVEs and malicious signatures.",
+          "ru": "Блокировка библиотек с известными уязвимостями и подозрительным кодом."
+        },
+        "cost": 120000,
+        "lef": -45,
+        "plm": -20,
+        "slm": -20
+      },
+      {
+        "id": "cicd_proxy",
+        "nist": "NIST PR.PS",
+        "name": {
+          "en": "Internal Artifact Proxy with Quarantine Gate (Artifactory)",
+          "ru": "Приватный кэширующий репозиторий пакетов (Artifactory/Nexus)"
+        },
+        "desc": {
+          "en": "Prevents direct public registry downloads; isolates untrusted packages.",
+          "ru": "Запрет прямой загрузки пакетов из интернета в процесс сборки."
+        },
+        "cost": 95000,
+        "lef": -50,
+        "plm": -15,
+        "slm": -10
+      },
+      {
+        "id": "cicd_sand",
+        "nist": "NIST ID.RA",
+        "name": {
+          "en": "Pre-Release Dynamic Package Sandboxing",
+          "ru": "Песочница предрелизного тестирования сторонних пакетов"
+        },
+        "desc": {
+          "en": "Executes third-party dependencies in isolated test environments.",
+          "ru": "Динамический запуск внешних модулей в изолированной среде."
+        },
+        "cost": 110000,
+        "lef": -40,
+        "plm": -25,
+        "slm": -15
+      },
+      {
+        "id": "cicd_opa",
+        "nist": "NIST GV.PO",
+        "name": {
+          "en": "Policy-as-Code Enforcement (Open Policy Agent / OPA)",
+          "ru": "Политики безопасности как код (Open Policy Agent / OPA)"
+        },
+        "desc": {
+          "en": "Blocks deployment of misconfigured containers and excessive capabilities.",
+          "ru": "Автоматический запрет опасных параметров сборки и прав доступа."
+        },
+        "cost": 85000,
+        "lef": -30,
+        "plm": -20,
+        "slm": -10
+      }
+    ]
+  }
+}

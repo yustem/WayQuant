@@ -1,0 +1,54 @@
+.executive-report {font-family:Arial,sans-serif;line-height:1.45;}
+.executive-report > section {display:flex;flex-direction:column;gap:18px;padding:28px;margin-bottom:24px;background:#fff;color:#172033;}
+.executive-report h2 {font-size:23px;font-weight:700;margin:0;}
+.executive-report h3 {font-size:14px;font-weight:700;color:#244785;margin:0 0 8px;}
+.executive-report p {font-size:12px;margin:0;line-height:1.5;}
+.report-heading {display:flex;align-items:center;gap:12px;border-bottom:1px solid #cbd5e1;padding-bottom:14px;}
+.report-heading img {width:54px;height:54px;object-fit:contain;}
+.report-designation,.report-date,.report-continuation {font-size:11px;color:#475569;}
+.report-date {margin-left:auto;text-align:right;white-space:nowrap;}
+.report-context {display:grid;grid-template-columns:1fr 1fr;gap:18px;font-size:12px;}
+.report-context strong,.report-context span {display:block;}
+.report-context strong {font-size:10px;color:#475569;margin-bottom:4px;}
+.report-metrics {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+.executive-report .report-kpi {padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:5px;min-width:0;}
+.executive-report .report-kpi > div:first-child {font-size:10px;color:#475569;min-height:29px;}
+.executive-report .report-kpi > div:last-child {font-size:17px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.report-chart-row {display:flex;align-items:center;gap:5px;}
+.report-chart {flex:1;min-width:0;}
+.report-y-axis,.report-legend {font-size:9px;color:#475569;}
+.report-legend {text-align:center;}
+.executive-report .report-method-note {font-size:10px;color:#475569;}
+.executive-report .report-controls-table {width:100%;border-collapse:collapse;font-size:11px;table-layout:fixed;}
+.executive-report .report-controls-table th,.executive-report .report-controls-table td {padding:8px 6px;border-bottom:1px solid #dbe2ec;text-align:left;vertical-align:top;overflow-wrap:anywhere;}
+.executive-report .report-controls-table th {background:#f1f5f9;font-size:10px;}
+.executive-report .report-controls-table th:nth-child(2){width:32%;}
+.executive-report .report-controls-table th:nth-child(4){width:20%;}
+.report-finance {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:10px;}
+.report-metadata dl {display:grid;grid-template-columns:1fr 1fr;gap:9px 18px;font-size:10px;margin:12px 0;}
+.report-metadata dt {color:#475569;}
+.report-metadata dd {margin:2px 0 0;font-variant-numeric:tabular-nums;}
+.report-run-id {grid-column:1/-1;white-space:nowrap;}
+.report-run-id dd {font-family:monospace;}
+.report-table-scroll {max-width:100%;overflow-x:auto;}
+.executive-report footer {margin-top:auto;text-align:right;font-size:10px;border-top:1px solid #e2e8f0;padding-top:9px;}
+@media screen and (max-width:700px) {
+ .executive-report > section {padding:16px;}
+ .executive-report .report-metrics,.executive-report .report-finance,.executive-report .report-context,.executive-report .report-metadata dl {grid-template-columns:1fr;}
+ .executive-report .report-heading {flex-wrap:wrap;}
+ .executive-report .report-date {margin-left:0;text-align:left;}
+ .executive-report .report-run-id {white-space:normal;overflow-wrap:anywhere;}
+ .executive-report .report-controls-table {font-size:9px;}
+ .executive-report .report-controls-table th,.executive-report .report-controls-table td {padding:5px 3px;}
+}
+@media print {
+ .report-pages.executive-report {width:100%!important;max-width:none!important;}
+ .report-pages.executive-report > section {box-sizing:border-box;height:auto!important;min-height:var(--report-page-height);padding:0!important;margin:0!important;border:0!important;border-radius:0!important;box-shadow:none!important;gap:16px;}
+ .executive-report .print-page-1 {break-after:page;}
+ .executive-report .print-page-2 {break-after:auto;}
+ .executive-report .report-lec-panel {background:white!important;border:0!important;}
+ .executive-report .report-recommendation {background:white!important;border:0!important;}
+ .executive-report .report-controls-table {min-width:0!important;background:white!important;border:0!important;}
+ .executive-report .report-table-scroll {overflow:visible;}
+ .executive-report .report-kpi > div:last-child {font-size:15px;}
+}

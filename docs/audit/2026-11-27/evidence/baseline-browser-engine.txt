@@ -1,0 +1,282 @@
+export function createPRNG(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a = (a + 0x6d2b79f5) >>> 0;
+    let t = a;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+// Standard Normal Box-Muller transform
+function sampleStandardNormal(rng) {
+  let u1 = 0;
+  let u2 = 0;
+  while (u1 <= 1e-12) u1 = rng();
+  u2 = rng();
+  return Math.sqrt(-2.0 * Math.log(u1)) * Math.cos(2.0 * Math.PI * u2);
+}
+
+// Marsaglia and Tsang's method for Gamma(alpha, 1)
+function sampleGamma(alpha, rng) {
+  if (alpha < 1.0) {
+    const u = Math.max(1e-12, rng());
+    return sampleGamma(1.0 + alpha, rng) * Math.pow(u, 1.0 / alpha);
+  }
+  const d = alpha - 1.0 / 3.0;
+  const c = 1.0 / Math.sqrt(9.0 * d);
+  while (true) {
+    let x = sampleStandardNormal(rng);
+    let v = 1.0 + c * x;
+    if (v <= 0) continue;
+    v = v * v * v;
+    const u = Math.max(1e-12, rng());
+    if (u < 1.0 - 0.0331 * x * x * x * x) return d * v;
+    if (Math.log(u) < 0.5 * x * x + d * (1.0 - v + Math.log(v))) return d * v;
+  }
+}
+
+// Modified Beta-PERT sampler
+function sampleBetaPERT(minVal, modeVal, maxVal, gamma, rng) {
+  if (maxVal <= minVal) return minVal;
+  const clampedMode = Math.max(minVal, Math.min(maxVal, modeVal));
+  const range = maxVal - minVal;
+  const alpha = 1.0 + gamma * ((clampedMode - minVal) / range);
+  const beta = 1.0 + gamma * ((maxVal - clampedMode) / range);
+  const g1 = sampleGamma(alpha, rng);
+  const g2 = sampleGamma(beta, rng);
+  const betaSample = g1 / (g1 + g2 || 1e-12);
+  return minVal + betaSample * range;
+}
+
+// Exact Poisson through independent Knuth-sampled chunks.
+function samplePoisson(lambda, rng) {
+  if (lambda <= 0) return 0;
+  // Poisson additivity: sum independent Poisson chunks, each sampled exactly.
+  let count = 0;
+  for (let remaining = lambda; remaining > 0;) {
+    const rate = Math.min(remaining, 20);
+    const limit = Math.exp(-rate);
+    let product = 1, k = 0;
+    do { k++; product *= rng(); } while (product > limit);
+    count += k - 1;
+    remaining -= rate;
+  }
+  return count;
+}
+
+// Shifted Lognormal calibrated from (floor, mode, P95).
+function computeLognormalParams(minVal, modeVal, maxVal) {
+  if (minVal === modeVal && modeVal === maxVal) return {mu: 0, sigma: 0, constant: minVal};
+  if (!(0 <= minVal && minVal < modeVal && modeVal < maxVal)) throw new Error('SLM requires floor < mode < P95, or equal estimates');
+  const z = 1.6448536269514722;
+  const ratio = Math.log(maxVal-minVal)-Math.log(modeVal-minVal);
+  const sigma = 2*ratio/(Math.sqrt(z*z+4*ratio)+z);
+  if (sigma > 2.5) throw new Error('SLM sigma exceeds 2.5');
+  return {mu: Math.log(modeVal-minVal)+sigma*sigma, sigma, constant: null};
+}
+
+export function runOpenFairMonteCarlo(
+  params,
+  iterations = 50000,
+  seed = 42001,
+  secMaterialityThreshold = Infinity,
+  lecThresholds = null
+) {
+  if (!Object.hasOwn(params, 'slefProb') || !Number.isFinite(params.slefProb) || params.slefProb < 0 || params.slefProb > 1) {
+    throw new Error('Validation error: slefProb is required and must be a finite number in [0, 1]');
+  }
+  for (const [key,value] of Object.entries(params)) {
+    if (!Number.isFinite(value) || value < 0) throw new Error(`Invalid ${key}`);
+  }
+  for (const name of ['lef','plm','slm']) {
+    if (!(params[name+'Min'] <= params[name+'Mode'] && params[name+'Mode'] <= params[name+'Max'])) throw new Error('Invalid estimate order');
+  }
+  if (!Number.isInteger(iterations) || iterations < 1000 || iterations > 250000 || !Number.isInteger(seed) || seed < 0 || seed > 4294967295 || params.lefMax > 100 || iterations*params.lefMax > 2000000 || params.slefProb > 1 || params.plmMax > 1e12 || params.slmMax > 1e12 || ![params.lefGamma ?? 4,params.plmGamma ?? 4].every(x=>x>=1 && x<=8)) throw new Error('Simulation exceeds supported limits');
+  const t0 = performance.now();
+  const rng = createPRNG(seed);
+
+  const {
+    lefMin, lefMode, lefMax, lefGamma = 4.0,
+    plmMin, plmMode, plmMax, plmGamma = 4.0,
+    slefProb,
+    slmMin, slmMode, slmMax
+  } = params;
+
+  const { mu: slmMu, sigma: slmSigma, constant } = computeLognormalParams(slmMin, slmMode, slmMax);
+
+  const totalLosses = new Float64Array(iterations);
+  const primaryLosses = new Float64Array(iterations);
+  const secondaryLosses = new Float64Array(iterations);
+
+  let sumTotal = 0;
+  let sumPrimary = 0;
+  let sumSecondary = 0;
+  let zeroLossCount = 0;
+  let secMaterialityExceedCount = 0;
+  let totalEvents = 0;
+
+  for (let i = 0; i < iterations; i++) {
+    const annualRate = sampleBetaPERT(lefMin, lefMode, lefMax, lefGamma, rng);
+    const numEvents = samplePoisson(annualRate, rng);
+    totalEvents += numEvents;
+    if (totalEvents > 2000000) throw new Error("Sampled event budget exceeded");
+
+    if (numEvents === 0) {
+      zeroLossCount++;
+      continue;
+    }
+
+    let yearPrimary = 0;
+    let yearSecondary = 0;
+
+    for (let e = 0; e < numEvents; e++) {
+      const pLoss = sampleBetaPERT(plmMin, plmMode, plmMax, plmGamma, rng);
+      yearPrimary += pLoss;
+
+      if (rng() < slefProb) {
+        const z = sampleStandardNormal(rng);
+        // The unbounded tail is intentional; parameter validation limits numerical scale.
+        const sLoss = constant !== null ? constant : slmMin + Math.exp(slmMu + slmSigma * z);
+        yearSecondary += sLoss;
+      }
+    }
+
+    const yearTotal = yearPrimary + yearSecondary;
+    if (yearTotal === 0) zeroLossCount++;
+    if (yearTotal > secMaterialityThreshold) {
+      secMaterialityExceedCount++;
+    }
+    totalLosses[i] = yearTotal;
+    primaryLosses[i] = yearPrimary;
+    secondaryLosses[i] = yearSecondary;
+
+    sumTotal += yearTotal;
+    sumPrimary += yearPrimary;
+    sumSecondary += yearSecondary;
+  }
+
+  // Create sorted indices / arrays for fast quantile & LEC calculation
+  const sortedTotal = new Float64Array(totalLosses);
+  sortedTotal.sort();
+
+  const sortedPrimary = new Float64Array(primaryLosses);
+  sortedPrimary.sort();
+
+  const sortedSecondary = new Float64Array(secondaryLosses);
+  sortedSecondary.sort();
+
+  const getPercentile = (arr, p) => {
+    const idx = Math.min(iterations - 1, Math.max(0, Math.floor((p / 100) * iterations)));
+    const index = (p / 100) * (iterations-1);
+    const lo = Math.floor(index), hi = Math.ceil(index);
+    return arr[lo] + (arr[hi]-arr[lo])*(index-lo);
+  };
+
+  const ale = sumTotal / iterations;
+  const alePrimary = sumPrimary / iterations;
+  const aleSecondary = sumSecondary / iterations;
+  const var90 = getPercentile(sortedTotal, 90);
+  const var95 = getPercentile(sortedTotal, 95);
+  const var99 = getPercentile(sortedTotal, 99);
+  const median = getPercentile(sortedTotal, 50);
+  const maxLoss = sortedTotal[iterations - 1];
+
+  // Expected Shortfall / Tail VaR (CVaR 99%)
+  const idx99 = Math.floor(0.99 * iterations);
+  let tailSum = 0;
+  const tailCount = Math.max(1, iterations - idx99);
+  for (let i = idx99; i < iterations; i++) {
+    tailSum += sortedTotal[i];
+  }
+  const cvar99 = tailSum / tailCount;
+
+  // Build Loss Exceedance Curve (LEC) points (80 points from P10 to P99.8)
+  const lecPoints = [];
+  const numLecSteps = lecThresholds ? lecThresholds.length-1 : 75;
+  const minNonZero = sortedTotal[zeroLossCount] || 1000;
+  const maxChartLoss = Math.max(var99 * 1.25, minNonZero * 10);
+
+  for (let s = 0; s <= numLecSteps; s++) {
+    const ratio = s / numLecSteps;
+    // Non-linear spacing for better resolution across both body and tail
+    const threshold = lecThresholds ? lecThresholds[s] : maxChartLoss * Math.pow(ratio, 1.6);
+    // Binary search in sortedTotal
+    let low = 0;
+    let high = iterations - 1;
+    while (low <= high) {
+      const mid = (low + high) >>> 1;
+      if (sortedTotal[mid] <= threshold) {
+        low = mid + 1;
+      } else {
+        high = mid - 1;
+      }
+    }
+    const exceedCount = iterations - low;
+    const probExceed = (exceedCount / iterations) * 100;
+    lecPoints.push({
+      loss: threshold,
+      prob: probExceed
+    });
+  }
+
+  // Build Histogram bins for non-zero losses up to 99.2th percentile (to show heavy tail cleanly)
+  const numBins = 42;
+  const histCap = Math.max(sortedTotal[iterations-1], 1);
+  const binWidth = histCap / numBins;
+  const histogramBins = Array.from({ length: numBins }, (_, b) => ({
+    binStart: b * binWidth,
+    binEnd: (b + 1) * binWidth,
+    binMid: (b + 0.5) * binWidth,
+    count: 0,
+    densityPct: 0,
+    isTail: (b + 0.5) * binWidth >= var95
+  }));
+
+  let nonZeroCount = 0;
+  for (let i = zeroLossCount; i < iterations; i++) {
+    const val = sortedTotal[i];
+    nonZeroCount++;
+    const binIdx = Math.min(numBins - 1, Math.floor(val / binWidth));
+    if (binIdx >= 0) {
+      histogramBins[binIdx].count++;
+    }
+  }
+  const denom = Math.max(1, nonZeroCount);
+  for (let b = 0; b < numBins; b++) {
+    histogramBins[b].densityPct = (histogramBins[b].count / denom) * 100;
+  }
+
+  // Percentile breakdown table
+  const percentileLevels = [10, 25, 50, 75, 90, 95, 99, 99.5];
+  const percentileTable = percentileLevels.map((p) => ({
+    percentile: p,
+    total: getPercentile(sortedTotal, p),
+    primary: getPercentile(sortedPrimary, p),
+    secondary: getPercentile(sortedSecondary, p),
+    exceedProb: (sortedTotal.filter(x => x > getPercentile(sortedTotal, p)).length / iterations)*100
+  }));
+
+  const elapsedMs = Math.max(1, Math.round(performance.now() - t0));
+
+  return {
+    iterations,
+    elapsedMs,
+    ale,
+    alePrimary,
+    aleSecondary,
+    median,
+    var90,
+    var95,
+    var99,
+    cvar99,
+    maxLoss,
+    zeroLossProb: (zeroLossCount / iterations) * 100,
+    secMaterialityExceedProb: (secMaterialityExceedCount / iterations) * 100,
+    lecPoints,
+    histogramBins,
+    percentileTable
+  };
+}
+

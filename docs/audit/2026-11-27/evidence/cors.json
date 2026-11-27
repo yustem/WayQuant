@@ -1,0 +1,10 @@
+{
+  "http://localhost:5173": {
+    "status": 200,
+    "allowOrigin": "http://localhost:5173"
+  },
+  "https://example.invalid": {
+    "status": 400,
+    "allowOrigin": null
+  }
+}

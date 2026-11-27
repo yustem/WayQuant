@@ -1,0 +1,5 @@
+{
+  "cases": 80,
+  "matched": 80,
+  "comparison": "Exact equality of every returned value except compute_time_ms; same valid inputs and seeds, pre-audit vs current."
+}

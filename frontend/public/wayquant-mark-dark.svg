@@ -1,0 +1,7 @@
+<!-- Dark-interface variant of /logo wayquant.svg. Original path geometry retained;
+     bounds trimmed with 12 units of padding, black face lifted for contrast. -->
+<svg width="454" height="793" viewBox="332 162 454 793" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M774 751L344 558.264V367L774 558.264V751Z" fill="white"/>
+<path d="M774 557L344 750L444.295 812.155L344 943L774 750V557Z" fill="#94A3B8"/>
+<path d="M774 174L344 367V560L774 367L656.413 310.766L774 174Z" fill="#6B83DB"/>
+</svg>

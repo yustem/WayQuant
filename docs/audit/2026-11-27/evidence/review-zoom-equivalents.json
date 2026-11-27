@@ -1,0 +1,50 @@
+[
+  {
+    "emulatedScale": 1,
+    "lang": "EN",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  },
+  {
+    "emulatedScale": 1,
+    "lang": "RU",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  },
+  {
+    "emulatedScale": 1.25,
+    "lang": "EN",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  },
+  {
+    "emulatedScale": 1.25,
+    "lang": "RU",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  },
+  {
+    "emulatedScale": 1.5,
+    "lang": "EN",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  },
+  {
+    "emulatedScale": 1.5,
+    "lang": "RU",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  },
+  {
+    "emulatedScale": 2,
+    "lang": "EN",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  },
+  {
+    "emulatedScale": 2,
+    "lang": "RU",
+    "overflow": false,
+    "type": "Equivalent CSS viewport + DPR; not native browser zoom"
+  }
+]
